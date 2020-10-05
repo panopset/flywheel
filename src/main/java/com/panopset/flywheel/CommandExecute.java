@@ -82,10 +82,6 @@ public class CommandExecute extends TemplateDirectiveCommand {
       sw.append(new ReflectionInvoker.Builder()
           .classMethodAndParms(getParams())
           .mapProvider(getTemplate().getFlywheel()).construct().exec());
-    } catch (ClassNotFoundException e) {
-      throw new FlywheelException("Class not found", e);
-    } catch (NoSuchMethodException e) {
-      throw new FlywheelException("Method not found", e);
     } catch (Exception e) {
       if (getTemplate() != null) {
         Logop.warn("Line: " + getLineNumber() + " "

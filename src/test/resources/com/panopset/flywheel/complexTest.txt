@@ -1,0 +1,15 @@
+${@p table_header}<table>${@q}${@p author}Ruth Gordon${@q}${@p quote}Never give up. And never, under any circumstances, face the facts.${@q}${@p fileName}outdir/complexOut.html${@q}${@f @fileName}<html><head><title>Good Quotes</title></head>
+<body>
+
+<h1>My Favorite</h1>
+${table_header}
+${@t quoteTemplate.txt}
+</table>
+
+<h1>More, From a List</h1>
+
+${table_header}${@p com.panopset.flywheel.tokens}|${@q}${@l quoteList.txt}
+${@p author}${1}${@q}${@p quote}${2}${@q}${@t quoteTemplate.txt}
+${@q}</table>
+
+</body></html>

@@ -1,0 +1,54 @@
+package com.panopset.flywheel;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.io.File;
+import java.io.IOException;
+import java.io.StringWriter;
+import org.junit.jupiter.api.Test;
+import com.panopset.compat.Fileop;
+import com.panopset.compat.Stringop;
+
+public final class BufferTest {
+  public static final String SIMPLEONECHAR = "simpleOneChar.txt";
+  public static final String SIMPLETWOLINES = "simpleTwoLines.txt";
+
+
+  @Test
+  public void testSimpleOneChar() throws IOException {
+    StringWriter sw = new StringWriter();
+    Flywheel script = new FlywheelBuilder().writer(sw)
+        .file(new File(SimpleTest.TEST_FILE_PATH + SIMPLEONECHAR)).construct();
+    script.exec();
+    assertEquals("x" + Stringop.getEol(), sw.toString());
+  }
+
+  @Test
+  public void testTwoLines() throws IOException {
+    StringWriter sw = new StringWriter();
+    Flywheel script = new FlywheelBuilder().writer(sw)
+        .file(new File(SimpleTest.TEST_FILE_PATH + SIMPLETWOLINES)).construct();
+    script.exec();
+    assertEquals("x" + Stringop.getEol() + "y" + Stringop.getEol(), sw.toString());
+  }
+
+
+  @Test
+  public void testSimpleBuffer() throws IOException {
+    StringWriter sw = new StringWriter();
+    Flywheel script = new FlywheelBuilder().writer(sw)
+        .file(new File(SimpleTest.TEST_FILE_PATH + SimpleTest.SIMPLETEST)).construct();
+    script.exec();
+    assertEquals(Fileop.readTextFile(SimpleTest.TEST_FILE_PATH + SimpleTest.EXPECTED),
+        sw.toString());
+  }
+
+  @Test
+  public void testComplexBuffer() throws IOException {
+    StringWriter sw = new StringWriter();
+    Flywheel script = new FlywheelBuilder().writer(sw)
+        .file(new File(SimpleTest.TEST_FILE_PATH + ComplexTest.TEMPLATE)).construct();
+    script.exec();
+    assertEquals(Fileop.readTextFile(SimpleTest.TEST_FILE_PATH + ComplexTest.EXPECTED),
+        sw.toString());
+  }
+}

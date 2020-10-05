@@ -2,7 +2,7 @@ package com.panopset.flywheel;
 
 import java.io.StringWriter;
 import com.panopset.compat.Logop;
-import com.panopset.compat.ReflectionInvoker;
+import com.panopset.gp.ReflectionInvoker;
 
 /**
  * <h1>e - Execute</h1>

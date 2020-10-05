@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.io.File;
 import java.io.IOException;
 import org.junit.jupiter.api.Test;
-import com.panopset.compat.FileCompare;
 import com.panopset.compat.Fileop;
 import com.panopset.compat.Logop;
+import com.panopset.gp.FileCompare;
 
 /**
  * Replacement test.

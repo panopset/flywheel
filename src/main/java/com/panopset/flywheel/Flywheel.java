@@ -13,7 +13,6 @@ import java.util.Properties;
 import java.util.Stack;
 import java.util.TreeMap;
 import com.panopset.compat.Fileop;
-import com.panopset.compat.Javop;
 import com.panopset.compat.Joiner;
 import com.panopset.compat.Logop;
 import com.panopset.compat.MapProvider;
@@ -21,6 +20,7 @@ import com.panopset.compat.Nls;
 import com.panopset.compat.Propop;
 import com.panopset.compat.Rezop;
 import com.panopset.compat.Stringop;
+import com.panopset.gp.Javop;
 
 /**
  * Panopset Flywheel.

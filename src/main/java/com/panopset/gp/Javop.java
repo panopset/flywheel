@@ -5,7 +5,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
-import com.panopset.compat.Joiner;
 import com.panopset.compat.Logop;
 import com.panopset.compat.MapProvider;
 import com.panopset.compat.Nls;
@@ -38,7 +37,7 @@ public class Javop {
       for (Entry<String, Object> entry : fromMap.entrySet()) {
         Object val = entry.getValue();
         if (val == null) {
-          Logop.warn(Joiner.on(" ").join(entry.getKey(), 
+          Logop.warn(String.format("%s %s", entry.getKey(), 
               " not found, will map it to blank."));
           rtn.put(entry.getKey(), "");
         } else {

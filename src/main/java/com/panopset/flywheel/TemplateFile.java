@@ -6,7 +6,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import com.panopset.compat.Fileop;
-import com.panopset.compat.Joiner;
 import com.panopset.compat.Logop;
 import com.panopset.compat.Stringop;
 
@@ -58,7 +57,7 @@ public final class TemplateFile extends TemplateReader {
         Logop.error(ex);
       }
     } else {
-      Logop.warn(Joiner.on(" ").join(Fileop.getCanonicalPath(tsf), "does not exist"));
+      Logop.warn(String.format("%s %s", Fileop.getCanonicalPath(tsf), "does not exist"));
     }
   }
 

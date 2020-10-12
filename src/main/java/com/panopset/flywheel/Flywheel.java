@@ -13,7 +13,6 @@ import java.util.Properties;
 import java.util.Stack;
 import java.util.TreeMap;
 import com.panopset.compat.Fileop;
-import com.panopset.compat.Joiner;
 import com.panopset.compat.Logop;
 import com.panopset.compat.MapProvider;
 import com.panopset.compat.Nls;
@@ -140,8 +139,8 @@ public final class Flywheel implements MapProvider {
         } else {
           String scriptFile = args[0];
           String targetDirectory = args[1];
-          Logop.debug(Joiner.on(":").join("Script file", scriptFile));
-          Logop.debug(Joiner.on(":").join("Target directory", targetDirectory));
+          Logop.debug(String.format("%s:%s", "Script file", scriptFile));
+          Logop.debug(String.format("%s:%s", "Target directory", targetDirectory));
           flywheel = new FlywheelBuilder().file(new File(scriptFile))
               .targetDirectory(new File(targetDirectory)).construct();
         }
@@ -432,9 +431,9 @@ public final class Flywheel implements MapProvider {
 
   public String exec() {
     String rtn = "";
-    Logop.debug(Joiner.on(":").join("Base directory", getBaseDirectoryPath()));
+    Logop.debug(String.format("%s:%s","Base directory", getBaseDirectoryPath()));
     if (file != null) {
-      Logop.debug(Joiner.on(":").join("Executing", Fileop.getCanonicalPath(file)));
+      Logop.debug(String.format("%s:%s", "Executing", Fileop.getCanonicalPath(file)));
     }
     getTemplate().output(getWriter());
     rtn = getWriter().toString();

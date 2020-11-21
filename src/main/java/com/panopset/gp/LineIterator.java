@@ -14,12 +14,8 @@ public class LineIterator {
     br = new BufferedReader(reader);
   }
 
-  public void close() {
-    try {
-      br.close();
-    } catch (IOException ex) {
-      Logop.handle(ex);
-    }
+  public void close() throws IOException {
+    br.close();
   }
 
   public String next() {

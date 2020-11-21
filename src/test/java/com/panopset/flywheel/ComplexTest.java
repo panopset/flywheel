@@ -33,7 +33,7 @@ public final class ComplexTest {
    * Variable definition.
    */
   @Test
-  public void testApp() throws IOException {
+  void testApp() throws IOException {
     Flywheel script = new FlywheelBuilder().construct();
     script.put(FOO, BAR);
     script.exec();
@@ -44,7 +44,7 @@ public final class ComplexTest {
    * Test script.
    */
   @Test
-  public void testScript() throws IOException {
+  void testScript() throws IOException {
     SimpleTest.comparisonTest(TEMPLATE, "outdir/complexOut.html", EXPECTED);
   }
 

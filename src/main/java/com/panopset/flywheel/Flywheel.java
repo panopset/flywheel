@@ -128,26 +128,22 @@ public final class Flywheel implements MapProvider {
    *        </pre>
    */
   public static void main(final String... args) throws IOException {
-    try {
-      if (args == null || args.length == 0 || args.length > 2) {
-        Logop.dspmsg("Params are script and target directory.");
-        // new Gui().setVisible(true);
+    if (args == null || args.length == 0 || args.length > 2) {
+      Logop.dspmsg("Params are script and target directory.");
+      // new Gui().setVisible(true);
+    } else {
+      Flywheel flywheel = null;
+      if (args.length == 1) {
+        flywheel = new FlywheelBuilder().properties(new File(args[0])).construct();
       } else {
-        Flywheel flywheel = null;
-        if (args.length == 1) {
-          flywheel = new FlywheelBuilder().properties(new File(args[0])).construct();
-        } else {
-          String scriptFile = args[0];
-          String targetDirectory = args[1];
-          Logop.debug(String.format("%s:%s", "Script file", scriptFile));
-          Logop.debug(String.format("%s:%s", "Target directory", targetDirectory));
-          flywheel = new FlywheelBuilder().file(new File(scriptFile))
-              .targetDirectory(new File(targetDirectory)).construct();
-        }
-        flywheel.exec();
+        String scriptFile = args[0];
+        String targetDirectory = args[1];
+        Logop.debug(String.format("%s:%s", "Script file", scriptFile));
+        Logop.debug(String.format("%s:%s", "Target directory", targetDirectory));
+        flywheel = new FlywheelBuilder().file(new File(scriptFile))
+            .targetDirectory(new File(targetDirectory)).construct();
       }
-    } catch (RuntimeException ex) {
-      Logop.error(ex);
+      flywheel.exec();
     }
   }
 
@@ -431,7 +427,7 @@ public final class Flywheel implements MapProvider {
 
   public String exec() {
     String rtn = "";
-    Logop.debug(String.format("%s:%s","Base directory", getBaseDirectoryPath()));
+    Logop.debug(String.format("%s:%s", "Base directory", getBaseDirectoryPath()));
     if (file != null) {
       Logop.debug(String.format("%s:%s", "Executing", Fileop.getCanonicalPath(file)));
     }

@@ -37,7 +37,7 @@ public final class SimpleTest {
    * Test simple script.
    */
   @Test
-  public void testSimpleScript() throws IOException {
+  void testSimpleScript() throws IOException {
     SimpleTest.comparisonTest(SIMPLETEST, SIMPLEOUT, EXPECTED);
   }
 

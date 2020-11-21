@@ -190,11 +190,11 @@ public abstract class Command {
     /**
      * @return Command.
      */
-    public Command construct() {
+    public Command construct() throws FlywheelException {
       Command rtn = null;
       if (command == null) {
         if (source == null) {
-          throw new RuntimeException(
+          throw new FlywheelException(
               Nls.xlate("Not enough information to create a command"));
         }
         final String innerPiece = source.substring(Syntax.getOpenDirective()
@@ -217,7 +217,7 @@ public abstract class Command {
           } else if (cmd == Commands.EXECUTE.getCharCode()) {
             rtn = new CommandExecute(source, innerPiece, template);
           } else {
-            throw new RuntimeException("Invalid directive: " + cmd);
+            throw new FlywheelException("Invalid directive: " + cmd);
           }
         } else {
           rtn = new CommandVariable(source, innerPiece, template);

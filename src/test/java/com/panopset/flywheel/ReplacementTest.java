@@ -14,7 +14,7 @@ public final class ReplacementTest {
   private static final String TEST_FILE_NAME = "replacementsTest.txt";
 
   @Test
-  public void testReplacements() throws IOException {
+  void testReplacements() throws IOException {
     File generatedFile = new File(SimpleTest.TEST_DIRECTORY + "/"
         + TEST_FILE_NAME);
     if (generatedFile.exists()) {

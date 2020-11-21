@@ -13,7 +13,7 @@ public final class SourceFileTest {
    *           Exception.
    */
   @Test
-  public void testSourceFileConstructor() throws Exception {
+  void testSourceFileConstructor() throws Exception {
     File file = new File(SimpleTest.TEST_FILE_PATH + SimpleTest.SIMPLETEST);
     Flywheel flywheel = new FlywheelBuilder()
         .targetDirectory(SimpleTest.TEST_DIRECTORY).file(file).construct();

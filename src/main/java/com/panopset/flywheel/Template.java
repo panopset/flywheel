@@ -56,7 +56,7 @@ public final class Template {
     }
   }
 
-  private List<Command> getRawCommands() {
+  private List<Command> getRawCommands() throws FlywheelException {
     if (rawCommands == null) {
       rawCommands = new RawCommandLoader(this).load();
       RawCommandLoader.addStructure(rawCommands);
@@ -72,7 +72,7 @@ public final class Template {
         List<Command> commands = new ImpliedQuitFilter()
             .addImpliedQuits(getRawCommands());
         topCommands = CommandMatcher.matchQuitCommands(commands);
-      } catch (Exception ex) {
+      } catch (FlywheelException ex) {
         Logop.error(ex);
         stop(ex.getMessage());
       }

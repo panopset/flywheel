@@ -8,13 +8,13 @@ import org.junit.jupiter.api.Test;
 import com.panopset.compat.Fileop;
 import com.panopset.compat.Stringop;
 
-public final class BufferTest {
+final class BufferTest {
   public static final String SIMPLEONECHAR = "simpleOneChar.txt";
   public static final String SIMPLETWOLINES = "simpleTwoLines.txt";
 
 
   @Test
-  public void testSimpleOneChar() throws IOException {
+  void testSimpleOneChar() throws IOException {
     StringWriter sw = new StringWriter();
     Flywheel script = new FlywheelBuilder().writer(sw)
         .file(new File(SimpleTest.TEST_FILE_PATH + SIMPLEONECHAR)).construct();
@@ -23,7 +23,7 @@ public final class BufferTest {
   }
 
   @Test
-  public void testTwoLines() throws IOException {
+  void testTwoLines() throws IOException {
     StringWriter sw = new StringWriter();
     Flywheel script = new FlywheelBuilder().writer(sw)
         .file(new File(SimpleTest.TEST_FILE_PATH + SIMPLETWOLINES)).construct();
@@ -33,7 +33,7 @@ public final class BufferTest {
 
 
   @Test
-  public void testSimpleBuffer() throws IOException {
+  void testSimpleBuffer() throws IOException {
     StringWriter sw = new StringWriter();
     Flywheel script = new FlywheelBuilder().writer(sw)
         .file(new File(SimpleTest.TEST_FILE_PATH + SimpleTest.SIMPLETEST)).construct();
@@ -43,7 +43,7 @@ public final class BufferTest {
   }
 
   @Test
-  public void testComplexBuffer() throws IOException {
+  void testComplexBuffer() throws IOException {
     StringWriter sw = new StringWriter();
     Flywheel script = new FlywheelBuilder().writer(sw)
         .file(new File(SimpleTest.TEST_FILE_PATH + ComplexTest.TEMPLATE)).construct();

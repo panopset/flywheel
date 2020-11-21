@@ -19,7 +19,7 @@ class RawCommandLoader {
     tmplt = template;
   }
 
-  List<Command> load() {
+  List<Command> load() throws FlywheelException {
     tmplt.getTemplateSource().reset();
     while (!tmplt.getTemplateSource().isDone()) {
       if (tmplt.getFlywheel().isStopped()) {
@@ -36,7 +36,7 @@ class RawCommandLoader {
     return commands;
   }
 
-  private void flushQueue() {
+  private void flushQueue() throws FlywheelException {
     while (!queue.isEmpty()) {
       process(queue.pop());
       if (tmplt.getFlywheel().isStopped()) {
@@ -53,7 +53,7 @@ class RawCommandLoader {
     Logop.debug("Loading command: " + command.toString());
   }
 
-  private void process(final String line) {
+  private void process(final String line) throws FlywheelException {
     int openDirectiveLoc = line.indexOf(Syntax.getOpenDirective());
     int closeDirectiveLoc = line.indexOf(Syntax.getCloseDirective());
     if (closeDirectiveLoc == -1 || openDirectiveLoc == -1) {

@@ -9,7 +9,7 @@ public final class VariableNamedFilesTest {
    * Test variable named template. See <b>variableNamedTemplateTest.txt</b>.
    */
   @Test
-  public void testVariableNamedTemplate() throws IOException {
+  void testVariableNamedTemplate() throws IOException {
     SimpleTest.comparisonTest("variableNamedTemplateTest.txt", "variableNamedTemplateResult.txt",
         "variableNamedTemplateExpected.txt");
   }
@@ -18,7 +18,7 @@ public final class VariableNamedFilesTest {
    * Test variable named list. See <b>variableNamedListTest.txt</b>
    */
   @Test
-  public void testVariableNamedList() throws IOException {
+  void testVariableNamedList() throws IOException {
     SimpleTest.comparisonTest("variableNamedListTest.txt", "variableNamedListResult.txt",
         "variableNamedListExpected.txt");
   }

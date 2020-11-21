@@ -10,7 +10,7 @@ public final class SplitColumnListTest {
    * Test split columns in a list command. See <b>splitList.txt</b>.
    */
   @Test
-  public void testSplitColumns() throws IOException {
+  void testSplitColumns() throws IOException {
     String expected = "6#Zonk7#Bonk";
     String[] inp = new String[] { "${@l splitList.txt}${2}#${3}${@q}" };
     String results = new FlywheelBuilder()

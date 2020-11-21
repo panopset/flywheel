@@ -18,7 +18,7 @@ class ImpliedQuitFilter {
    *          Commands to add implied quits to.
    * @return List of commands with implied Command Quits added.
    */
-  List<Command> addImpliedQuits(final List<Command> commands) {
+  List<Command> addImpliedQuits(final List<Command> commands) throws FlywheelException {
     List<Command> rtn = new ArrayList<Command>();
     if (commands == null) {
       return rtn;
@@ -36,7 +36,7 @@ class ImpliedQuitFilter {
       if (command.getNext() == null
           && command.getTemplate().getCommandFile() != null) {
         if (checkOnce) {
-          throw new RuntimeException("Structure error.");
+          throw new FlywheelException("Structure error.");
         }
         ImpliedQuit iq = new ImpliedQuit(command.getTemplate());
         command.setNext(iq);

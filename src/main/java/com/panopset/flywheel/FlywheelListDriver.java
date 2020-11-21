@@ -113,7 +113,7 @@ public class FlywheelListDriver {
   }
 
   private Map<String, String> createInputMapFrom(final String inputLine) {
-    Map<String, String> rtn = new HashMap<String, String>();
+    Map<String, String> rtn = new HashMap<>();
     rtn.put("l", inputLine);
 
     if (Stringop.isPopulated(inputLine)) {

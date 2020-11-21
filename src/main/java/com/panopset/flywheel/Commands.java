@@ -2,9 +2,6 @@ package com.panopset.flywheel;
 
 /**
  * Enumeration of all commands.
- *
- * @author Karl Dinwiddie
- *
  */
 public enum Commands {
 

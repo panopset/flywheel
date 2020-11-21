@@ -26,8 +26,6 @@ import com.panopset.compat.Stringop;
  *
  * </pre>
  *
- * @author Karl Dinwiddie
- *
  */
 public class CommandReplace extends MatchableCommand implements
     UserMatchableCommand {

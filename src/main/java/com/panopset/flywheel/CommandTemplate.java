@@ -25,8 +25,6 @@ import java.io.StringWriter;
  * <p>
  * Continue execution using the supplied template file.
  * </p>
- *
- * @author Karl Dinwiddie
  */
 public class CommandTemplate extends TemplateDirectiveCommand {
 

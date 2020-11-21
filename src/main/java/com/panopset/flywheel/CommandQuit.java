@@ -13,8 +13,6 @@ package com.panopset.flywheel;
  * each item in the list.</li>
  * </ul>
  *
- * @author Karl Dinwiddie
- *
  */
 public class CommandQuit extends TemplateDirectiveCommand {
 

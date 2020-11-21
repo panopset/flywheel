@@ -2,12 +2,6 @@ package com.panopset.flywheel;
 
 import java.io.IOException;
 
-/**
- * Test the template command.
- *
- * @author Karl Dinwiddie
- *
- */
 public final class TemplateTest {
 
   /**

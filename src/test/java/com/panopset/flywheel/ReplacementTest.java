@@ -9,22 +9,10 @@ import com.panopset.compat.Fileop;
 import com.panopset.compat.Logop;
 import com.panopset.gp.FileCompare;
 
-/**
- * Replacement test.
- *
- * @author Karl Dinwiddie
- *
- */
 public final class ReplacementTest {
 
-  /**
-   * replacementsTest.txt.
-   */
   private static final String TEST_FILE_NAME = "replacementsTest.txt";
 
-  /**
-   * Test replacements.
-   */
   @Test
   public void testReplacements() throws IOException {
     File generatedFile = new File(SimpleTest.TEST_DIRECTORY + "/"

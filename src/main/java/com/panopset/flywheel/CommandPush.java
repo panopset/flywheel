@@ -13,8 +13,6 @@ import java.io.StringWriter;
  * Everything following this command is pushed into a String buffer, until a q
  * command is reached.
  *</p>
- * @author Karl Dinwiddie
- *
  */
 public class CommandPush extends MatchableCommand implements
     UserMatchableCommand {

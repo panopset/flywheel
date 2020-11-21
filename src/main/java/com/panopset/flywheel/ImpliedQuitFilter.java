@@ -8,7 +8,6 @@ import java.util.List;
  * <p>
  * Adds implied Command Quits to the commands vector.
  * </p>
- * @author Karl Dinwiddie
  */
 class ImpliedQuitFilter {
 

@@ -15,7 +15,6 @@ package com.panopset.flywheel;
  * You may easily change that to a JSP like syntax if you like, by specifying
  * new directives in FlywheelBuilder.
  *
- * @author Karl Dinwiddie
  * @see FlywheelBuilder
  *
  */

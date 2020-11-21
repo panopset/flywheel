@@ -9,9 +9,6 @@ import com.panopset.compat.Logop;
 /**
  * Any command that is after burner processed with the QuitCommand must extend
  * this class.
- *
- * @author Karl Dinwiddie
- *
  */
 public abstract class MatchableCommand extends TemplateDirectiveCommand {
 

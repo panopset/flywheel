@@ -2,7 +2,6 @@ package com.panopset.flywheel;
 
 /**
  * Flywheel reserved words, all in the com.panopset namespace.
- * @author Karl Dinwiddie
  */
 public final class ReservedWords {
 
@@ -36,11 +35,6 @@ public final class ReservedWords {
    * in CommandList.
    */
   public static final String SPLITS = "com.panopset.flywheel.splits";
-  /**
-   * Internal use only, used to calculate report paths.
-   */
-  public static final String DEPTH_CHARGE = Syntax.getOpenDirective()
-      + "com.panopset.flywheel.depthCharge" + Syntax.getCloseDirective();
 
   /**
    * Prevent instantiation.

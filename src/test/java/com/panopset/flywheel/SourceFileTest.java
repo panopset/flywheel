@@ -4,11 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.io.File;
 import org.junit.jupiter.api.Test;
 
-/**
- * Source file test.
- *
- * @author Karl Dinwiddie
- */
 public final class SourceFileTest {
 
   /**

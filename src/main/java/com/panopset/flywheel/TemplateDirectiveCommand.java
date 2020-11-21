@@ -4,8 +4,6 @@ import java.io.StringWriter;
 
 /**
  * Command that is created from a directive.
- *
- * @author Karl Dinwiddie
  */
 public class TemplateDirectiveCommand extends TemplateCommand {
 

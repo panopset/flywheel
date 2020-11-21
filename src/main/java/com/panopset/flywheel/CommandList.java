@@ -58,8 +58,6 @@ import com.panopset.compat.Stringop;
  * numbered variables as different variable names in order for lower level lists
  * to use them.
  * </p>
- *
- * @author Karl Dinwiddie
  */
 public class CommandList extends MatchableCommand implements
     UserMatchableCommand {

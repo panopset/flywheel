@@ -8,8 +8,6 @@ import com.panopset.compat.Logop;
 
 /**
  * Command to handle normal text entry.
- *
- * @author Karl Dinwiddie
  */
 public class CommandText extends Command {
 

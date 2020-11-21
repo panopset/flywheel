@@ -3,11 +3,6 @@ package com.panopset.flywheel;
 import java.io.IOException;
 import org.junit.jupiter.api.Test;
 
-/**
- * Variable named files test.
- * 
- * @author Karl Dinwiddie
- */
 public final class VariableNamedFilesTest {
 
   /**

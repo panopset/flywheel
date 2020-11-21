@@ -3,12 +3,6 @@ package com.panopset.flywheel;
 import java.io.IOException;
 import org.junit.jupiter.api.Test;
 
-/**
- * Deep list test.
- *
- * @author Karl Dinwiddie
- *
- */
 public final class DeepListTest {
 
   /**

@@ -34,8 +34,6 @@ import com.panopset.gp.ReflectionInvoker;
  * Panopset
  *
  * </pre>
- *
- * @author Karl Dinwiddie
  */
 public class CommandExecute extends TemplateDirectiveCommand {
 

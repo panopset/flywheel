@@ -2,8 +2,6 @@ package com.panopset.flywheel;
 
 /**
  * A template command is specified in a script, and has a source.
- *
- * @author Karl Dinwiddie
  */
 public abstract class TemplateCommand extends Command {
 

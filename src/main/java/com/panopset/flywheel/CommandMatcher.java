@@ -6,8 +6,6 @@ import java.util.Stack;
 
 /**
  * Flywheel command matcher.
- *
- * @author Karl Dinwiddie
  */
 final class CommandMatcher {
 

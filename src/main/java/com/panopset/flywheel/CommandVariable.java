@@ -19,8 +19,6 @@ import com.panopset.compat.Stringop;
  *
  * </pre>
  *
- * @author Karl Dinwiddie
- *
  */
 public final class CommandVariable extends TemplateCommand {
 

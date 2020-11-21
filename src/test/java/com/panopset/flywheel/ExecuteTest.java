@@ -2,12 +2,7 @@ package com.panopset.flywheel;
 
 import java.io.IOException;
 import org.junit.jupiter.api.Test;
-/**
- * Test Command Execute.
- *
- * @author Karl Dinwiddie
- *
- */
+
 public final class ExecuteTest  {
 
   @Test

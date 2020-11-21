@@ -16,8 +16,6 @@ import com.panopset.compat.Stringop;
 /**
  * Map wrapper with a map name.
  *
- * @author Karl Dinwiddie
- *
  * @param <K>
  *          Key type.
  * @param <V>
@@ -106,10 +104,6 @@ public final class NamedMap<K, V> {
     return map.get(key);
   }
 
-  /**
-   *
-   * @return Key reporter.
-   */
   public KeyReporter getKeyReporter() {
     return KEY_REPORTER;
   }
@@ -119,13 +113,6 @@ public final class NamedMap<K, V> {
    */
   public static final class KeyReporter {
 
-    /**
-     * Get key report.
-     * 
-     * @param source
-     *          Source to get report on.
-     * @return Key report.
-     */
     KeyReport getKeyReport(final String source) {
       KeyReport rtn = keyReports.get(source);
       if (rtn == null) {
@@ -135,14 +122,6 @@ public final class NamedMap<K, V> {
       return rtn;
     }
 
-    /**
-     * Report used key.
-     * 
-     * @param source
-     *          Source where key is used.
-     * @param key
-     *          Key.
-     */
     void reportUsedKey(final String source, final String key) {
       KeyReport keyReport = getKeyReport(source);
       if (!keyReport.getUsedKeys().contains(key)) {
@@ -150,14 +129,6 @@ public final class NamedMap<K, V> {
       }
     }
 
-    /**
-     * Report defined key.
-     * 
-     * @param source
-     *          Source where key is defined.
-     * @param key
-     *          Key.
-     */
     void reportDefinedKey(final String source, final String key) {
       KeyReport keyReport = getKeyReport(source);
       if (!keyReport.getDefinedKeys().contains(key)) {
@@ -165,17 +136,8 @@ public final class NamedMap<K, V> {
       }
     }
 
-    /**
-     * Maximum numerics.
-     */
     static final int MAXIMUM_NUMERICS = 100;
 
-    /**
-     * Report unused keys.
-     * 
-     * @param file
-     *          File.
-     */
     void reportUnusedKeys(final String file) throws IOException {
       StringWriter sw = new StringWriter();
       for (String source : keyReports.keySet()) {
@@ -190,7 +152,6 @@ public final class NamedMap<K, V> {
           keyReport.getDefinedKeys().remove("" + i);
         }
         keyReport.getDefinedKeys().remove(ReservedWords.FILE);
-        keyReport.getDefinedKeys().remove(ReservedWords.DEPTH_CHARGE);
         keyReport.getDefinedKeys().remove(ReservedWords.SCRIPT);
         keyReport.getDefinedKeys().remove(ReservedWords.SPLITS);
         keyReport.getDefinedKeys().remove(ReservedWords.TARGET);

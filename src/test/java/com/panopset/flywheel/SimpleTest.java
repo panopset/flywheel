@@ -8,12 +8,6 @@ import org.junit.jupiter.api.Test;
 import com.panopset.compat.Fileop;
 import com.panopset.gp.FileCompare;
 
-/**
- * Simple test.
- *
- * @author Karl Dinwiddie
- *
- */
 public final class SimpleTest {
 
   /**

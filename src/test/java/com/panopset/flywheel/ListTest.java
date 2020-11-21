@@ -3,12 +3,6 @@ package com.panopset.flywheel;
 import java.io.IOException;
 import org.junit.jupiter.api.Test;
 
-/**
- * Test the List command.
- *
- * @author Karl Dinwiddie
- *
- */
 public final class ListTest {
 
   @Test

@@ -4,12 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.io.IOException;
 import org.junit.jupiter.api.Test;
 
-/**
- * Split column list test.
- *
- * @author Karl Dinwiddie
- *
- */
 public final class SplitColumnListTest {
 
   /**

@@ -1,10 +1,5 @@
 package com.panopset.flywheel;
 
-/**
- * Implied Command Quit.
- *
- * @author Karl Dinwiddie
- */
 public class ImpliedQuit extends CommandQuit {
 
   /**

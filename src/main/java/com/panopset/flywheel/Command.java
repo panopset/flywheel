@@ -5,8 +5,6 @@ import com.panopset.compat.Nls;
 
 /**
  * Abstract Flywheel command class.
- *
- * @author Karl Dinwiddie
  */
 public abstract class Command {
 

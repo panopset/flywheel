@@ -28,8 +28,6 @@ import com.panopset.compat.Fileop;
  * <p>
  * Output to the specified file, until the end of the template or another file command is found.
  * </p>
- * 
- * @author Karl Dinwiddie
  *
  */
 public final class CommandFile extends MatchableCommand {

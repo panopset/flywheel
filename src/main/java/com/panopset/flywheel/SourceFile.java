@@ -9,8 +9,6 @@ import com.panopset.compat.Logop;
 
 /**
  * Flywheel source file, all paths relative to the primary script file.
- *
- * @author Karl Dinwiddie
  */
 public final class SourceFile {
 

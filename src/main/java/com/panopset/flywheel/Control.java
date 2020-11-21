@@ -2,9 +2,6 @@ package com.panopset.flywheel;
 
 /**
  * Flywheel control flags.
- *
- * @author Karl Dinwiddie
- *
  */
 public final class Control {
 

@@ -40,7 +40,7 @@ public final class TemplateFile extends TemplateReader {
         fileDone = true;
         br.close();
       } else {
-        onDeck = str + Stringop.getEol();
+        onDeck = String.format("%s%s", str, Stringop.getEol());
       }
     } catch (IOException e) {
       Logop.error(e);

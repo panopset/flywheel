@@ -1,17 +1,18 @@
 package com.panopset.flywheel;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.List;
-import java.util.Stack;
 import com.panopset.compat.Logop;
 
 class RawCommandLoader {
 
   private final Template tmplt;
 
-  private final Stack<String> queue = new Stack<String>();
+  private final Deque<String> queue = new ArrayDeque<>();
 
-  private final List<Command> commands = new ArrayList<Command>();
+  private final List<Command> commands = new ArrayList<>();
 
   RawCommandLoader(final Template template) {
     assert template != null;
@@ -22,11 +23,11 @@ class RawCommandLoader {
     tmplt.getTemplateSource().reset();
     while (!tmplt.getTemplateSource().isDone()) {
       if (tmplt.getFlywheel().isStopped()) {
-        return null;
+        return new ArrayList<>();
       }
       flushQueue();
       if (tmplt.getFlywheel().isStopped()) {
-        return null;
+        return new ArrayList<>();
       }
       String line = tmplt.getTemplateSource().next();
       process(line);
@@ -44,12 +45,6 @@ class RawCommandLoader {
     }
   }
 
-  /**
-   * Load command.
-   * 
-   * @param command
-   *          Command to load.
-   */
   private void loadCommand(final Command command) {
     if (tmplt.getFirstCommand() == null) {
       tmplt.setFirstCommand(command);
@@ -69,15 +64,14 @@ class RawCommandLoader {
       skipTo(line, openDirectiveLoc);
       return;
     }
-    int endOfDirective = closeDirectiveLoc
-        + Syntax.getCloseDirective().length();
+    int endOfDirective = closeDirectiveLoc + Syntax.getCloseDirective().length();
     if (openDirectiveLoc == 0) {
       String remainder = line.substring(endOfDirective);
       if (remainder.length() > 0) {
         this.queue.push(remainder);
       }
-      loadCommand(new Command.Builder().template(tmplt)
-          .source(line, closeDirectiveLoc).construct());
+      loadCommand(
+          new Command.Builder().template(tmplt).source(line, closeDirectiveLoc).construct());
     } else {
       skipTo(line, openDirectiveLoc);
     }
@@ -101,5 +95,4 @@ class RawCommandLoader {
       prev = command;
     }
   }
-
 }

@@ -141,7 +141,6 @@ public final class Flywheel implements MapProvider {
   public static void main(final String... args) throws IOException {
     if (args == null || args.length == 0 || args.length > 2) {
       Logop.dspmsg("Params are script and target directory.");
-      // new Gui().setVisible(true);
     } else {
       Flywheel flywheel = null;
       if (args.length == 1) {
@@ -149,8 +148,8 @@ public final class Flywheel implements MapProvider {
       } else {
         String scriptFile = args[0];
         String targetDirectory = args[1];
-        Logop.debug(String.format("%s:%s", "Script file", scriptFile));
-        Logop.debug(String.format("%s:%s", "Target directory", targetDirectory));
+        Logop.debug(String.format(Stringop.CS, "Script file", scriptFile));
+        Logop.debug(String.format(Stringop.CS, "Target directory", targetDirectory));
         flywheel = new FlywheelBuilder().file(new File(scriptFile))
             .targetDirectory(new File(targetDirectory)).construct();
       }
@@ -439,9 +438,9 @@ public final class Flywheel implements MapProvider {
 
   public String exec() {
     String rtn = "";
-    Logop.debug(String.format("%s:%s", "Base directory", getBaseDirectoryPath()));
+    Logop.debug(String.format(Stringop.CS, "Base directory", getBaseDirectoryPath()));
     if (file != null) {
-      Logop.debug(String.format("%s:%s", "Executing", Fileop.getCanonicalPath(file)));
+      Logop.debug(String.format(Stringop.CS, "Executing", Fileop.getCanonicalPath(file)));
     }
     getTemplate().output(getWriter());
     rtn = getWriter().toString();

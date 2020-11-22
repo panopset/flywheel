@@ -6,12 +6,6 @@ import com.panopset.compat.Logop;
 import com.panopset.compat.MapProvider;
 
 public class ReflectionInvoker {
-
-  static void defineAllowedScriptCalls () {
-    defineTemplateAllowedReflection("capitalize", "com.panopset.compat.Stringop.capitalize");
-    defineTemplateAllowedReflection("check4match", "com.panopset.compat.Stringop.check4match");
-    defineTemplateAllowedReflection("getVersion", "com.panopset.util.AppVersion.getVersion");
-  }
  
   private MapProvider pmapProvider;
   private Object pobject;
@@ -52,10 +46,6 @@ public class ReflectionInvoker {
   }
 
   public static final class Builder {
-
-    {
-      defineAllowedScriptCalls();
-    }
 
     private Object bobject;
     private String bclassName;
@@ -170,7 +160,7 @@ public class ReflectionInvoker {
   
   private static final String CLASS_KEY_PREFIX = "com.panopset.flywheel.key.";
 
-  private static void defineTemplateAllowedReflection(String key, String fullyQualifiedStaticMethod) {
+  public static void defineTemplateAllowedReflection(String key, String fullyQualifiedStaticMethod) {
     System.getProperties().put(String.format("%s%s", CLASS_KEY_PREFIX, key), fullyQualifiedStaticMethod);
   }
 }

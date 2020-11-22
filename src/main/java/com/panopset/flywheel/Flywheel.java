@@ -115,6 +115,18 @@ import com.panopset.compat.Stringop;
  */
 public final class Flywheel implements MapProvider {
 
+  private static boolean defined = false;
+  
+  static synchronized void defineAllowedScriptCalls () {
+    if (defined) {
+      return;
+    }
+    defined = true;
+    ReflectionInvoker.defineTemplateAllowedReflection("capitalize", "com.panopset.compat.Stringop.capitalize");
+    ReflectionInvoker.defineTemplateAllowedReflection("check4match", "com.panopset.compat.Stringop.check4match");
+    ReflectionInvoker.defineTemplateAllowedReflection("getVersion", "com.panopset.util.AppVersion.getVersion");
+  }
+  
   /**
    * @param args
    * 
@@ -286,6 +298,7 @@ public final class Flywheel implements MapProvider {
    * @param stringLineSupplier line supplier.
    */
   Flywheel(final TemplateSource stringLineSupplier) throws IOException {
+    defineAllowedScriptCalls();
     sls = stringLineSupplier;
     this.mapStack.push(new NamedMap<>(Stringop.getNextJvmUniqueIDstr()));
     this.mapStack.peek().put(ReservedWords.FILE, sls.getName());

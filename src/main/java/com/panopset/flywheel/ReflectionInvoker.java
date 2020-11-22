@@ -11,7 +11,6 @@ public class ReflectionInvoker {
     defineTemplateAllowedReflection("capitalize", "com.panopset.compat.Stringop.capitalize");
     defineTemplateAllowedReflection("check4match", "com.panopset.compat.Stringop.check4match");
     defineTemplateAllowedReflection("getVersion", "com.panopset.util.AppVersion.getVersion");
-    defineTemplateAllowedReflection("suppressReplacements", "com.panopset.flywheel.suppressReplacements");
   }
  
   private MapProvider pmapProvider;
@@ -150,18 +149,18 @@ public class ReflectionInvoker {
     /**
      * Optional, if not specified either object or className must be specified.
      */
-    public Builder classMethodAndParms(final String classKeyAndParams) {
+    public Builder classMethodAndParms(final String classKeyAndParams) throws FlywheelException {
       int i = classKeyAndParams.indexOf("(");
       String key = classKeyAndParams.substring(0, i);
       String params = classKeyAndParams.substring(i);
       String fullClassName = System.getProperty(String.format("%s%s", CLASS_KEY_PREFIX, key));
+      if (fullClassName == null) {
+        throw new FlywheelException(String.format("Function not defined: %s", classKeyAndParams));
+      }
       String classMethodAndParms = String.format("%s%s", fullClassName, params);
-      
-      
-      
       int methodStart = classMethodAndParms.lastIndexOf(".");
       if (methodStart == -1) {
-        return this;
+        throw new FlywheelException(String.format("Method not defined: %s", classKeyAndParams));
       }
       String className = classMethodAndParms.substring(0, methodStart);
       String methodAndParms = classMethodAndParms.substring(methodStart + 1);

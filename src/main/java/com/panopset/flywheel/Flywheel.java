@@ -452,9 +452,6 @@ public final class Flywheel implements MapProvider {
    */
   public void stop(final String message) {
     Logop.warn(message);
-    if (template != null) {
-      Logop.warn(template.getRelativePath());
-    }
     if (Logop.isDebugging()) {
       if (getResolvingCommand() != null) {
         Logop.debug(" at: " + getResolvingCommand().toString());

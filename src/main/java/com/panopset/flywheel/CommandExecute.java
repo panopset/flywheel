@@ -84,7 +84,7 @@ public class CommandExecute extends TemplateDirectiveCommand {
       sw.append(new ReflectionInvoker.Builder()
           .classMethodAndParms(getParams())
           .mapProvider(getTemplate().getFlywheel()).construct().exec());
-    } catch (Exception e) {
+    } catch (FlywheelException e) {
       if (getTemplate() != null) {
         Logop.warn("Line: " + getLineNumber() + " "
             + getTemplate().getTemplateSource().getName());
@@ -94,12 +94,11 @@ public class CommandExecute extends TemplateDirectiveCommand {
           Logop.warn("source: " + getSource());
         }
       }
-      Logop.error(e);
       if (getTemplate() != null && getTemplate().getFlywheel() != null) {
         getTemplate().getFlywheel().stop(e.getMessage());
       }
-      Logop.warn("Failure executing " + getSource());
-      throw new FlywheelException("Execution terminated, see log.", e);
+      String errorMessage = String.format("Failure executing %s.", getSource());
+      this.getTemplate().getFlywheel().stop(errorMessage);
     }
   }
 

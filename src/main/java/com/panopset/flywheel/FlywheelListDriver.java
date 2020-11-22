@@ -146,6 +146,9 @@ public class FlywheelListDriver {
     final FlywheelListDriver fp;
 
     public FlywheelListDriver build() {
+      if (fp.inputList.isEmpty()) {
+        fp.inputList.add("");
+      }
       return fp;
     }
 

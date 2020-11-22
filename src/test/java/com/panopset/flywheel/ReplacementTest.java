@@ -9,7 +9,7 @@ import com.panopset.compat.Fileop;
 import com.panopset.compat.Logop;
 import com.panopset.gp.FileCompare;
 
-public final class ReplacementTest {
+final class ReplacementTest {
 
   private static final String TEST_FILE_NAME = "replacementsTest.txt";
 

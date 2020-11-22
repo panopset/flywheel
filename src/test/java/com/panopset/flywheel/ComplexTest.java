@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Unit test for Panopset Flywheel Script.
  */
-public final class ComplexTest {
+class ComplexTest {
 
   /**
    * <b>complexText.txt</b>.

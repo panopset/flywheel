@@ -19,7 +19,6 @@ import com.panopset.compat.Nls;
 import com.panopset.compat.Propop;
 import com.panopset.compat.Rezop;
 import com.panopset.compat.Stringop;
-import com.panopset.gp.Javop;
 
 /**
  * Panopset Flywheel.
@@ -355,7 +354,7 @@ public final class Flywheel implements MapProvider {
     }
     Propop.load(props, file);
     for (Object k : props.keySet()) {
-      put(k.toString(), props.getProperty(k.toString()).toString());
+      put(k.toString(), props.getProperty(k.toString()));
     }
     return "";
   }
@@ -382,7 +381,7 @@ public final class Flywheel implements MapProvider {
    *
    * </pre>
    *
-   * @param value If true, all v commands will be not output anything.
+   * @param value If true, all v commands will not output anything.
    */
   public void suppressReplacements(final String value) {
     if (value == null) {

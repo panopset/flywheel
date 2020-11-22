@@ -24,13 +24,7 @@ final class CommandMatcher {
     final List<Command> rtn = new ArrayList<>();
     final Deque<MatchableCommand> stack = new ArrayDeque<>();
     for (Command command : commands) {
-      if (stack.isEmpty()) {
-        if (!(command instanceof MatchableCommand)) {
-          rtn.add(command);
-        }
-      } else {
-        stack.peek().getCommands().add(command);
-      }
+      updateStack(stack, rtn, command);
       if (command instanceof MatchableCommand) {
         if (stack.isEmpty() || command instanceof CommandFile) {
           rtn.add(command);
@@ -45,10 +39,17 @@ final class CommandMatcher {
     }
     return rtn;
   }
+  
+  private static void updateStack(Deque<MatchableCommand> stack, List<Command> rtn, Command command ) {
+    if (stack.isEmpty()) {
+      if (!(command instanceof MatchableCommand)) {
+        rtn.add(command);
+      }
+    } else {
+      stack.peek().getCommands().add(command);
+    }
+  }
 
-  /**
-   * Prevent instantiation.
-   */
   private CommandMatcher() {
   }
 }

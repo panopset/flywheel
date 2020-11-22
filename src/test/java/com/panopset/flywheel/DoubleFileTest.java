@@ -3,7 +3,7 @@ package com.panopset.flywheel;
 import java.io.IOException;
 import org.junit.jupiter.api.Test;
 
-public final class DoubleFileTest {
+class DoubleFileTest {
 
   /**
    * Test generating more than one files using Command File.

@@ -14,7 +14,6 @@ import com.panopset.compat.Logop;
 import com.panopset.compat.Nls;
 import com.panopset.compat.Propop;
 import com.panopset.compat.Stringop;
-import com.panopset.gp.Javop;
 import com.panopset.gp.TextFileProcessor;
 
 public final class FlywheelBuilder {

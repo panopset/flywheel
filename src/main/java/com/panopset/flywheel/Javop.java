@@ -1,4 +1,4 @@
-package com.panopset.gp;
+package com.panopset.flywheel;
 
 import java.io.StringWriter;
 import java.util.Collection;
@@ -89,8 +89,12 @@ public class Javop {
 
   public static String invokeStaticStringMethod(
       final String classMethodAndParms, final MapProvider mapProvider) {
-    return new ReflectionInvoker.Builder()
-        .classMethodAndParms(classMethodAndParms).mapProvider(mapProvider)
-        .construct().exec();
+    try {
+      return new ReflectionInvoker.Builder()
+          .classMethodAndParms(classMethodAndParms).mapProvider(mapProvider)
+          .construct().exec();
+    } catch (FlywheelException e) {
+      return e.getMessage();
+    }
   }
 }

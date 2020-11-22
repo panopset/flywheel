@@ -2,12 +2,14 @@ package com.panopset.flywheel;
 
 import java.io.StringWriter;
 import com.panopset.compat.Logop;
-import com.panopset.gp.ReflectionInvoker;
 
 /**
  * <h1>e - Execute</h1>
  * <p>
- * Excecute any public static method, which returns a String and takes 0 or more
+ * Excecute any public static method, defined as a Java System property,
+ * where the key starts with "com.panopset.flywheel.cmdkey." and finishes
+ * with the name of the command to be used in the e command definition.
+ * The function returned by the key must be one that returns a String and takes 0 or more
  * String parameters. If parameters match variable names, then they will be
  * replaced by the variable value, otherwise the parameter will be used as is.
  * </p>
@@ -21,7 +23,7 @@ import com.panopset.gp.ReflectionInvoker;
  *
  * ${&#064;p name}panopset${&#064;q}
  * 
- * ${&#064;e com.panopset.compat.Strings.capitalize(name)}
+ * ${&#064;e capitalize(name)}
  *
  * </pre>
  * 
@@ -36,14 +38,16 @@ import com.panopset.gp.ReflectionInvoker;
  * </pre>
  */
 public class CommandExecute extends TemplateDirectiveCommand {
+  
+  static final String CAPITALIZE_CMD = "${&#064; capitalize(name)}";
 
   /**
    * Short HTML text for publishing command format in an HTML document.
    *
-   * @return <b>${&#064;e com.panopset.compat.Strings.capitalize(name)}</b>.
+   * @return <b>${&#064;e capitalize(name)}</b>.
    */
   public static String getShortHtmlText() {
-    return "${&#064;e com.panopset.compat.Strings.capitalize(name)}";
+    return CAPITALIZE_CMD;
   }
 
   /**

@@ -4,4 +4,4 @@ ${@q}
 ${@p link_that}
 <a href="${relpath}${hrf}" class="menu">&nbsp;${hnm}&nbsp;</a>
 ${@q}
-${@e com.panopset.compat.Stringop.check4match(fileName,hrf,link_this,link_that)}
+${@e check4match(fileName,hrf,link_this,link_that)}

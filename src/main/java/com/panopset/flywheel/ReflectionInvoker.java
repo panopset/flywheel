@@ -1,4 +1,4 @@
-package com.panopset.gp;
+package com.panopset.flywheel;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.StringTokenizer;
@@ -6,8 +6,14 @@ import com.panopset.compat.Logop;
 import com.panopset.compat.MapProvider;
 
 public class ReflectionInvoker {
-  private ReflectionInvoker() {}
 
+  static void defineAllowedScriptCalls () {
+    defineTemplateAllowedReflection("capitalize", "com.panopset.compat.Stringop.capitalize");
+    defineTemplateAllowedReflection("check4match", "com.panopset.compat.Stringop.check4match");
+    defineTemplateAllowedReflection("getVersion", "com.panopset.util.AppVersion.getVersion");
+    defineTemplateAllowedReflection("suppressReplacements", "com.panopset.flywheel.suppressReplacements");
+  }
+ 
   private MapProvider pmapProvider;
   private Object pobject;
   private Class<?> pclazz;
@@ -48,6 +54,10 @@ public class ReflectionInvoker {
 
   public static final class Builder {
 
+    {
+      defineAllowedScriptCalls();
+    }
+
     private Object bobject;
     private String bclassName;
     private Class<?> bclazz;
@@ -55,7 +65,7 @@ public class ReflectionInvoker {
     private String bparms;
     private MapProvider bmapProvider;
 
-    public ReflectionInvoker construct() {
+    public ReflectionInvoker construct() throws FlywheelException {
       ReflectionInvoker rtn = new ReflectionInvoker();
       rtn.pobject = bobject;
       if (bobject == null) {
@@ -63,7 +73,7 @@ public class ReflectionInvoker {
           try {
             rtn.pclazz = Class.forName(bclassName);
           } catch (ClassNotFoundException ex) {
-            Logop.error(ex);
+              throw new FlywheelException(bclassName);
           }
         } else {
           rtn.pclazz = bclazz;
@@ -78,11 +88,9 @@ public class ReflectionInvoker {
     }
 
     /**
-     * Optional, if not specified, either className or classMethodAndParms must
-     * be specified.
+     * Optional, if not specified, either className or classMethodAndParms must be specified.
      *
-     * @param object
-     *          Object method is to be invoked on.
+     * @param object Object method is to be invoked on.
      * @return Builder.
      */
     public Builder object(final Object object) {
@@ -91,11 +99,9 @@ public class ReflectionInvoker {
     }
 
     /**
-     * Optional, if not specified, either object or classMethodAndParms must be
-     * specified.
+     * Optional, if not specified, either object or classMethodAndParms must be specified.
      *
-     * @param className
-     *          className
+     * @param className className
      * @return Builder.
      */
     public Builder className(final String className) {
@@ -122,9 +128,9 @@ public class ReflectionInvoker {
     }
 
     /**
-     * Optional mapProvider. If specified, the mapProvider will be checked for
-     * parameter values. If the parameter does not match any of the
-     * mapProvider's keys, then the parameter is simply used by itself.
+     * Optional mapProvider. If specified, the mapProvider will be checked for parameter values. If
+     * the parameter does not match any of the mapProvider's keys, then the parameter is simply used
+     * by itself.
      */
     public Builder mapProvider(final MapProvider mapProvider) {
       this.bmapProvider = mapProvider;
@@ -137,15 +143,22 @@ public class ReflectionInvoker {
         Logop.error(String.format("Format should be function(parms), found: %s", methodAndParms));
       }
       bmethod = methodAndParms.substring(0, paramsStart);
-      bparms = methodAndParms.substring(paramsStart + 1,
-          methodAndParms.length() - 1);
+      bparms = methodAndParms.substring(paramsStart + 1, methodAndParms.length() - 1);
       return this;
     }
 
     /**
      * Optional, if not specified either object or className must be specified.
      */
-    public Builder classMethodAndParms(final String classMethodAndParms) {
+    public Builder classMethodAndParms(final String classKeyAndParams) {
+      int i = classKeyAndParams.indexOf("(");
+      String key = classKeyAndParams.substring(0, i);
+      String params = classKeyAndParams.substring(i);
+      String fullClassName = System.getProperty(String.format("%s%s", CLASS_KEY_PREFIX, key));
+      String classMethodAndParms = String.format("%s%s", fullClassName, params);
+      
+      
+      
       int methodStart = classMethodAndParms.lastIndexOf(".");
       if (methodStart == -1) {
         return this;
@@ -154,5 +167,11 @@ public class ReflectionInvoker {
       String methodAndParms = classMethodAndParms.substring(methodStart + 1);
       return className(className).methodAndParms(methodAndParms);
     }
+  }
+  
+  private static final String CLASS_KEY_PREFIX = "com.panopset.flywheel.key.";
+
+  private static void defineTemplateAllowedReflection(String key, String fullyQualifiedStaticMethod) {
+    System.getProperties().put(String.format("%s%s", CLASS_KEY_PREFIX, key), fullyQualifiedStaticMethod);
   }
 }

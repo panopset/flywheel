@@ -101,7 +101,7 @@ public class FlywheelListDriver {
           .input(Stringop.stringToList(getTemplate())).construct();
       sw.append(flywheel.exec());
       if (flywheel.isStopped()) {
-        return "Stopped, see logs.";
+        return String.format("Stopped: %s", flywheel.getControl().getStopReason());
       }
       if (flywheel.isCreateOutputLineBreaksFlagSet().booleanValue()) {
         sw.append(Stringop.getEol());

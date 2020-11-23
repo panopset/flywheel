@@ -1,7 +1,5 @@
 package com.panopset.flywheel;
 
-import com.panopset.compat.Stringop;
-
 /**
  * Flywheel control flags.
  */

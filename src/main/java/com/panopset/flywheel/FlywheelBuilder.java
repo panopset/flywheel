@@ -108,7 +108,7 @@ public final class FlywheelBuilder {
    */
   public FlywheelBuilder input(final String[] newStringArray) {
     array = newStringArray;
-    return this.suppressLineBreaks();
+    return this;
   }
 
   /**

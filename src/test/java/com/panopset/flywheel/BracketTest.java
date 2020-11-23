@@ -25,7 +25,7 @@ final class BracketTest {
   @Test
   void testBracket() throws IOException {
     Logop.turnOnDebugging();
-    final String s = new FlywheelBuilder().map(FOO, BAR)
+    final String s = new FlywheelBuilder().suppressLineBreaks().map(FOO, BAR)
         .input(new String[] { EXPECTED }).construct().exec();
     assertEquals(EXPECTED, s);
     Logop.turnOffDebugging();

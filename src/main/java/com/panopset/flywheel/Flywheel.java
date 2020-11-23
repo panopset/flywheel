@@ -247,7 +247,6 @@ public final class Flywheel implements MapProvider {
   }
 
   public void setCreateOutputLineBreaksFlag(boolean value) {
-    System.out.println("setCreateOutputLineBreaksFlag: " + value);
     createOutputLineBreaksFlag = value;
   }
   

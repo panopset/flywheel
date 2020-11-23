@@ -13,14 +13,14 @@ public final class ReplacementsTest {
   @Test
   void testReplacements() throws IOException {
     assertEquals(Stringop.BAR, new FlywheelBuilder().replacement(Stringop.FOO, Stringop.BAR)
-        .input(new String[] {Stringop.FOO}).construct().exec());
+        .suppressLineBreaks().input(new String[] {Stringop.FOO}).construct().exec());
   }
 
   @Test
   void testReplacementsUsingProps() throws IOException {
     Properties props = new Properties();
     props.put(Stringop.FOO, Stringop.BAR);
-    assertEquals(Stringop.BAT, new FlywheelBuilder().properties(props)
+    assertEquals(Stringop.BAT, new FlywheelBuilder().properties(props).suppressLineBreaks()
         .replacement(Stringop.BAR, Stringop.BAT).input(new String[] {SCRIPT}).construct().exec());
   }
 }

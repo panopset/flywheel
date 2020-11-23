@@ -19,6 +19,7 @@ import com.panopset.gp.TextFileProcessor;
 public final class FlywheelBuilder {
 
   private boolean isOutputEnabled = true;
+  private boolean isLineBreaks = true;
   private StringWriter writer;
   private File targetDirectory;
   private String[] array;
@@ -58,6 +59,7 @@ public final class FlywheelBuilder {
     flywheel.setRegisteredObjects(registeredObjects);
     flywheel.setFile(getScriptFile());
     flywheel.setOutputEnabled(isOutputEnabled);
+    flywheel.setCreateOutputLineBreaksFlag(isLineBreaks);
     return flywheel;
   }
 
@@ -106,7 +108,7 @@ public final class FlywheelBuilder {
    */
   public FlywheelBuilder input(final String[] newStringArray) {
     array = newStringArray;
-    return this;
+    return this.suppressLineBreaks();
   }
 
   /**
@@ -124,6 +126,11 @@ public final class FlywheelBuilder {
     return this.input(sa);
   }
 
+  public FlywheelBuilder suppressLineBreaks() {
+    isLineBreaks = false;
+    return this;
+  }
+ 
   /**
    * Defaults to &quot;temp&quot;.
    *

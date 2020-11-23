@@ -11,12 +11,10 @@ import com.panopset.compat.Logop;
  * template.
  */
 public final class Template {
-
   private final Flywheel fw;
-
   private final TemplateSource ts;
-
   private SourceFile sf;
+  private final boolean lineBreaks;
 
   private Command firstCommand;
 
@@ -111,16 +109,26 @@ public final class Template {
     return sf.getRelativePath();
   }
 
+  public boolean isLineBreaks() {
+    return lineBreaks;
+  }
+
   public Template(final Flywheel flywheel, final SourceFile sourceFile) {
     fw = flywheel;
     sf = sourceFile;
     ts = new TemplateFile(sourceFile.getFile());
+    lineBreaks = fw.isCreateOutputLineBreaksFlagSet();
   }
 
-  public Template(final Flywheel flywheel, final TemplateSource templateSource) {
+  public Template(final Flywheel flywheel, final TemplateSource templateSource, boolean hasLineBreaks) {
     fw = flywheel;
     sf = null;
     ts = templateSource;
+    lineBreaks = hasLineBreaks;
+  }
+
+  public Template(final Flywheel flywheel, final TemplateSource templateSource) {
+    this (flywheel, templateSource, flywheel.isCreateOutputLineBreaksFlagSet());
   }
 
   public TemplateSource getTemplateSource() {

@@ -1,16 +1,16 @@
 package com.panopset.flywheel;
 
-import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Deque;
 import java.util.List;
+import java.util.Stack;
 import com.panopset.compat.Logop;
+import com.panopset.compat.Stringop;
 
 class RawCommandLoader {
 
   private final Template tmplt;
 
-  private final Deque<String> queue = new ArrayDeque<>();
+  private final Stack<String> queue = new Stack<>();
 
   private final List<Command> commands = new ArrayList<>();
 
@@ -30,6 +30,9 @@ class RawCommandLoader {
         return new ArrayList<>();
       }
       String line = tmplt.getTemplateSource().next();
+      if (tmplt.isLineBreaks()) {
+        line = String.format("%s%s", line, Stringop.getEol());
+      }
       process(line);
     }
     flushQueue();

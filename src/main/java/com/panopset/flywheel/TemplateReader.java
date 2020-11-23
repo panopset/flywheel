@@ -23,7 +23,7 @@ public abstract class TemplateReader implements TemplateSource {
   public final int getLine() {
     return index + 1;
   }
-
+  
   protected final int getIndex() {
     return index;
   }

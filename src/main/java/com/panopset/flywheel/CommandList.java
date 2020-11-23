@@ -153,7 +153,7 @@ public class CommandList extends MatchableCommand implements
   private String processValue(final String str) {
     StringWriter sw = new StringWriter();
     new Template(getTemplate().getFlywheel(), new TemplateArray(
-        new String[] { str })).exec(sw);
+        new String[] { str }), false).exec(sw);
     return sw.toString();
   }
 }

@@ -1,7 +1,7 @@
-${@p table_header}<table>${@q}${@p author}Ruth Gordon${@q}${@p quote}Never give up. And never, under any circumstances, face the facts.${@q}${@p fileName}outdir/complexOut.html${@q}${@f @fileName}<html><head><title>Good Quotes</title></head>
+${@p table_header}<table>${@q}${@p author}author 0${@q}${@p quote}some text.${@q}${@p fileName}outdir/complexOut.html${@q}${@f @fileName}<html><head><title>Good Quotes</title></head>
 <body>
 
-<h1>My Favorite</h1>
+<h1>some header</h1>
 ${table_header}
 ${@t quoteTemplate.txt}
 </table>

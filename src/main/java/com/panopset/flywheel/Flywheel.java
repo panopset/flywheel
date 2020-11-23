@@ -223,37 +223,34 @@ public final class Flywheel implements MapProvider {
     return rtn;
   }
 
-  /**
-   * Current command file.
-   */
   private CommandFile currentCommandFile;
 
-  /**
-   * @return Current command file.
-   */
   CommandFile getCurrentCommandFile() {
     return currentCommandFile;
   }
 
-  /**
-   * Set current command file.
-   *
-   * @param commandFile New current command file.
-   */
   void setCurrentCommandFile(final CommandFile commandFile) {
     currentCommandFile = commandFile;
   }
 
-  /**
-   * Replacements.
-   */
   private List<String[]> replacements;
-
-  /**
-   * Registered objects.
-   */
   private Map<String, Object> registeredObjs;
 
+
+  private Boolean createOutputLineBreaksFlag;
+
+  public Boolean isCreateOutputLineBreaksFlagSet() {
+    if (createOutputLineBreaksFlag == null) {
+      createOutputLineBreaksFlag = false;
+    }
+    return createOutputLineBreaksFlag;
+  }
+
+  public void setCreateOutputLineBreaksFlag(boolean value) {
+    System.out.println("setCreateOutputLineBreaksFlag: " + value);
+    createOutputLineBreaksFlag = value;
+  }
+  
   /**
    * Copy package resource.
    *

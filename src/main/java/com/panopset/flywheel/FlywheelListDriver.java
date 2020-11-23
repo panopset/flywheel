@@ -16,10 +16,19 @@ public class FlywheelListDriver {
   private List<String> inputList;
   private final String template;
   private Integer splitz;
-  private Boolean createOutputLineBreaksFlag;
   private String tokens;
+  private Boolean outRtn;
+
+  public Boolean getOutRtn() {
+    return outRtn;
+  }
+
+  public void setOutRtn(Boolean outRtn) {
+    this.outRtn = outRtn;
+  }
 
   public Flywheel getFlywheel() {
+    flywheel.setCreateOutputLineBreaksFlag(getOutRtn());
     return flywheel;
   }
  
@@ -54,17 +63,6 @@ public class FlywheelListDriver {
     splitz = value;
   }
 
-  public Boolean isCreateOutputLineBreaksFlagSet() {
-    if (createOutputLineBreaksFlag == null) {
-      createOutputLineBreaksFlag = false;
-    }
-    return createOutputLineBreaksFlag;
-  }
-
-  public void setCreateOutputLineBreaksFlag(boolean value) {
-    createOutputLineBreaksFlag = value;
-  }
-  
   public String getTokens() {
     if (tokens == null) {
       tokens = "";
@@ -105,7 +103,7 @@ public class FlywheelListDriver {
       if (flywheel.isStopped()) {
         return "Stopped, see logs.";
       }
-      if (isCreateOutputLineBreaksFlagSet()) {
+      if (flywheel.isCreateOutputLineBreaksFlagSet().booleanValue()) {
         sw.append(Stringop.getEol());
       }
     }
@@ -153,7 +151,7 @@ public class FlywheelListDriver {
     }
 
     public Builder withLineBreaks(boolean value) {
-      fp.setCreateOutputLineBreaksFlag(value);
+      fp.setOutRtn(value);
       return this;
     }
     

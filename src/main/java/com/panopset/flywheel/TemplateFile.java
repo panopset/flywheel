@@ -7,7 +7,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import com.panopset.compat.Fileop;
 import com.panopset.compat.Logop;
-import com.panopset.compat.Stringop;
 
 public final class TemplateFile extends TemplateReader {
 
@@ -35,12 +34,12 @@ public final class TemplateFile extends TemplateReader {
       return true;
     }
     try {
-      String str = br.readLine(); 
+      String str = br.readLine();
       if (str == null) {
         fileDone = true;
         br.close();
       } else {
-        onDeck = String.format("%s%s", str, Stringop.getEol());
+        onDeck = str;
       }
     } catch (IOException e) {
       Logop.error(e);

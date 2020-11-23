@@ -1,5 +1,7 @@
 package com.panopset.flywheel;
 
+import com.panopset.compat.Stringop;
+
 /**
  * Flywheel control flags.
  */
@@ -31,20 +33,23 @@ public final class Control {
    * @return Stop execution flag.
    */
   public boolean isStopped() {
-    return stop;
+    return stopped;
   }
 
+  public String getStopReason() {
+   return stopReason;   
+  }
+ 
   /**
    * Some error conditions require that Flywheel execution must stop.
    */
-  public void stop() {
-    stop = true;
+  public void stop(String reason) {
+    stopReason = reason;
+    stopped = true;
   }
 
-  /**
-   * Stop flag.
-   */
-  private boolean stop = false;
+  private boolean stopped = false;
+  private String stopReason = "";
 
   /**
    * Replacement suppression flag.

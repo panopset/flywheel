@@ -474,7 +474,7 @@ public final class Flywheel implements MapProvider {
       Logop.warn(Nls.xlate("Stopped while executing line") + " " + resolvingCommand.getLineNumber()
           + resolvingCommand.toString());
     }
-    control.stop();
+    control.stop(message);
   }
 
   /**

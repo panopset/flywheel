@@ -6,21 +6,26 @@ import java.util.Properties;
 import org.junit.jupiter.api.Test;
 import com.panopset.compat.Stringop;
 
-public final class ReplacementsTest {
+final class ReplacementsTest {
 
   private static final String SCRIPT = "${foo}";
 
   @Test
   void testReplacements() throws IOException {
-    assertEquals(Stringop.BAR, new FlywheelBuilder().replacement(Stringop.FOO, Stringop.BAR)
-        .suppressLineBreaks().input(new String[] {Stringop.FOO}).construct().exec());
+    assertEquals(Stringop.BAR,
+        new FlywheelBuilder().replacement(Stringop.FOO, Stringop.BAR)
+            .withLineFeedRules(LineFeedRules.FLATTEN).input(new String[] {Stringop.FOO}).construct()
+            .exec());
   }
 
   @Test
   void testReplacementsUsingProps() throws IOException {
     Properties props = new Properties();
     props.put(Stringop.FOO, Stringop.BAR);
-    assertEquals(Stringop.BAT, new FlywheelBuilder().properties(props).suppressLineBreaks()
-        .replacement(Stringop.BAR, Stringop.BAT).input(new String[] {SCRIPT}).construct().exec());
+    assertEquals(Stringop.BAT,
+        new FlywheelBuilder().properties(props).withLineFeedRules(LineFeedRules.FLATTEN)
+            .replacement(Stringop.BAR, Stringop.BAT).input(new String[] {SCRIPT}).construct()
+            .exec());
   }
+
 }

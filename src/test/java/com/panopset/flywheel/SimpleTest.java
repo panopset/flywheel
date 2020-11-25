@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import com.panopset.compat.Fileop;
 import com.panopset.gp.FileCompare;
 
-public final class SimpleTest {
+final class SimpleTest {
 
   /**
    * Temp directory: $HOME/temp/com/panopset/test.

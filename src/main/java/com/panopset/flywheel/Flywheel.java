@@ -237,17 +237,17 @@ public final class Flywheel implements MapProvider {
   private Map<String, Object> registeredObjs;
 
 
-  private Boolean createOutputLineBreaksFlag;
+  private LineFeedRules lineFeedRules;
 
-  public Boolean isCreateOutputLineBreaksFlagSet() {
-    if (createOutputLineBreaksFlag == null) {
-      createOutputLineBreaksFlag = false;
+  public LineFeedRules getLineFeedRules() {
+    if (lineFeedRules == null) {
+      lineFeedRules = new LineFeedRules();
     }
-    return createOutputLineBreaksFlag;
+    return lineFeedRules;
   }
 
-  public void setCreateOutputLineBreaksFlag(boolean value) {
-    createOutputLineBreaksFlag = value;
+  public void setLineFeedRules(LineFeedRules templateRules) {
+    this.lineFeedRules = templateRules;
   }
   
   /**
@@ -411,7 +411,7 @@ public final class Flywheel implements MapProvider {
       stop("mapStack empty, this should be an impossible condition.");
       return null;
     }
-    Stack<NamedMap<String, String>> stack = new Stack<NamedMap<String, String>>();
+    Stack<NamedMap<String, String>> stack = new Stack<>();
     for (NamedMap<String, String> item : mapStack) {
       stack.push(item);
     }
@@ -429,25 +429,24 @@ public final class Flywheel implements MapProvider {
   }
 
   public void mergeMap(final Map<String, String> map) {
-    mapStack.push(new NamedMap<String, String>(Stringop.getNextJvmUniqueIDstr(), map));
+    mapStack.push(new NamedMap<>(Stringop.getNextJvmUniqueIDstr(), map));
   }
 
   public String exec() {
-    String rtn = "";
-    Logop.debug(String.format(Stringop.CS, "Base directory", getBaseDirectoryPath()));
-    if (file != null) {
-      Logop.debug(String.format(Stringop.CS, "Executing", Fileop.getCanonicalPath(file)));
+    if (getTemplate().getTemplateRules().getWinCRLF().booleanValue()) {
+      Stringop.setEol(Stringop.DOS_RTN);
+    } else {
+      Stringop.setEol("\n");
     }
-    getTemplate().output(getWriter());
-    rtn = getWriter().toString();
-    return rtn;
+    getTemplate().output();
+    return getWriter().toString();
   }
 
   private Template template;
 
   public Template getTemplate() {
     if (template == null) {
-      template = new Template(this, sls);
+      template = new Template(this, sls, getLineFeedRules());
     }
     return template;
   }

@@ -30,7 +30,7 @@ class RawCommandLoader {
         return new ArrayList<>();
       }
       String line = tmplt.getTemplateSource().next();
-      if (tmplt.isLineBreaks()) {
+      if (tmplt.getTemplateRules().getLineBreaks().booleanValue()) {
         line = String.format("%s%s", line, Stringop.getEol());
       }
       process(line);

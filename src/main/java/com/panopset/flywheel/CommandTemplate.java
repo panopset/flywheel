@@ -60,7 +60,7 @@ public class CommandTemplate extends TemplateDirectiveCommand {
   @Override
   public final void resolve(final StringWriter sw) {
     new Template(getTemplate().getFlywheel(), new SourceFile(getTemplate()
-        .getFlywheel(), getParams())).exec(sw);
+        .getFlywheel(), getParams()), getTemplate().getTemplateRules()).exec(sw);
   }
 
   /**

@@ -15,9 +15,6 @@ public final class TemplateArray extends TemplateReader {
 
   @Override
   public String getNextLine() {
-    if (isDone()) {
-      return null;
-    }
     return da[getIndex()];
   }
 

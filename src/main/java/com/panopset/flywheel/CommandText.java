@@ -26,7 +26,6 @@ public class CommandText extends Command {
    */
   public CommandText(final Template template, final String params) {
     super(template);
-    assert params != null;
     this.text = params;
   }
 

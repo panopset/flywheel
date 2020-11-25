@@ -2,7 +2,7 @@ package com.panopset.flywheel;
 
 import java.io.IOException;
 
-public final class TemplateTest {
+final class TemplateTest {
 
   /**
    * Test template command. See <b>templateTest01.txt</b>.

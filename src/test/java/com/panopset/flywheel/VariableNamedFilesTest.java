@@ -3,7 +3,7 @@ package com.panopset.flywheel;
 import java.io.IOException;
 import org.junit.jupiter.api.Test;
 
-public final class VariableNamedFilesTest {
+final class VariableNamedFilesTest {
 
   /**
    * Test variable named template. See <b>variableNamedTemplateTest.txt</b>.

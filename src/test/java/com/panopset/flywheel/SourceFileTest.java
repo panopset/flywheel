@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.io.File;
 import org.junit.jupiter.api.Test;
 
-public final class SourceFileTest {
+final class SourceFileTest {
 
   /**
    * Test source file constructor in Flywheel.Builder.

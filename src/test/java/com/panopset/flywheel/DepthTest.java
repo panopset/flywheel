@@ -3,7 +3,7 @@ package com.panopset.flywheel;
 import java.io.IOException;
 import org.junit.jupiter.api.Test;
 
-public final class DepthTest {
+final class DepthTest {
 
   @Test
   void testDepth() throws IOException {

@@ -19,15 +19,15 @@ import com.panopset.gp.TextFileProcessor;
 public final class FlywheelBuilder {
 
   private boolean isOutputEnabled = true;
-  private boolean isLineBreaks = true;
+  private LineFeedRules lineFeedRules;
   private StringWriter writer;
   private File targetDirectory;
   private String[] array;
   private TemplateSource sls;
   private File scriptFile;
   private String baseDirectoryPath;
-  private Map<String, String> map = new HashMap<String, String>();
-  private Map<String, Object> registeredObjects = new HashMap<String, Object>();
+  private Map<String, String> map = new HashMap<>();
+  private Map<String, Object> registeredObjects = new HashMap<>();
 
   /**
    * Create a script. Example usage:
@@ -59,7 +59,7 @@ public final class FlywheelBuilder {
     flywheel.setRegisteredObjects(registeredObjects);
     flywheel.setFile(getScriptFile());
     flywheel.setOutputEnabled(isOutputEnabled);
-    flywheel.setCreateOutputLineBreaksFlag(isLineBreaks);
+    flywheel.setLineFeedRules(getLineFeedRules());
     return flywheel;
   }
 
@@ -125,12 +125,12 @@ public final class FlywheelBuilder {
     }
     return this.input(sa);
   }
-
-  public FlywheelBuilder suppressLineBreaks() {
-    isLineBreaks = false;
+ 
+  public FlywheelBuilder withLineFeedRules(LineFeedRules lineFeedRules) {
+    this.lineFeedRules = lineFeedRules;
     return this;
   }
- 
+
   /**
    * Defaults to &quot;temp&quot;.
    *
@@ -147,9 +147,6 @@ public final class FlywheelBuilder {
     return targetDirectory;
   }
 
-  /**
-   * @return Script file.
-   */
   private File getScriptFile() {
     if (scriptFile == null) {
       String scriptFileName = this.map.get(ReservedWords.SCRIPT);
@@ -162,9 +159,6 @@ public final class FlywheelBuilder {
     return scriptFile;
   }
 
-  /**
-   * @return Base directory path.
-   */
   private String getBaseDirectoryPath() {
     if (!Stringop.isPopulated(baseDirectoryPath)) {
       baseDirectoryPath = Fileop.getCanonicalPath(getScriptFile().getParentFile());
@@ -172,9 +166,6 @@ public final class FlywheelBuilder {
     return baseDirectoryPath;
   }
 
-  /**
-   * @return String line supplier.
-   */
   private TemplateSource getStringLineSupplier() {
     if (sls == null) {
       if (array != null) {
@@ -186,6 +177,12 @@ public final class FlywheelBuilder {
     return sls;
   }
 
+  private LineFeedRules getLineFeedRules() {
+    if (lineFeedRules == null) {
+      lineFeedRules = new LineFeedRules();
+    }
+    return lineFeedRules;
+  }
   /**
    * You may pre-define variables by supplying a map. Please remember to stay away from the the
    * numbers, as they are used in lists.
@@ -266,10 +263,6 @@ public final class FlywheelBuilder {
     return this;
   }
 
-  /**
-   * @param properties Properties file.
-   * @return Builder.
-   */
   public FlywheelBuilder properties(final Properties properties) {
     return map(Propop.loadMapFromProperties(properties));
   }
@@ -283,7 +276,7 @@ public final class FlywheelBuilder {
    * @return Builder.
    */
   public FlywheelBuilder replacements(final File replacementsFile) {
-    final List<String[]> v = new ArrayList<String[]>();
+    final List<String[]> v = new ArrayList<>();
     try (TextFileProcessor tfp = TextFileProcessor.textFileIterator(replacementsFile)) {
       String separator = null;
       while (tfp.hasNext()) {
@@ -326,17 +319,11 @@ public final class FlywheelBuilder {
     return this;
   }
 
-  /**
-   * Replacements map.
-   */
   private List<String[]> replacements;
 
-  /**
-   * @return replacements map.
-   */
   private List<String[]> getReplacements() {
     if (replacements == null) {
-      replacements = new ArrayList<String[]>();
+      replacements = new ArrayList<>();
     }
     return replacements;
   }

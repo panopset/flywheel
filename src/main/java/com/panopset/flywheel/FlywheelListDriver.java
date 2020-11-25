@@ -3,6 +3,7 @@ package com.panopset.flywheel;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,26 +13,23 @@ import com.panopset.compat.Stringop;
 
 public class FlywheelListDriver {
 
-  private Flywheel flywheel;
   private List<String> inputList;
   private final String template;
   private Integer splitz;
   private String tokens;
-  private Boolean outRtn;
+  private LineFeedRules lineFeedRules;
 
-  public Boolean getOutRtn() {
-    return outRtn;
+  public LineFeedRules getLineFeedRules() {
+    if (lineFeedRules == null) {
+      lineFeedRules = new LineFeedRules();
+    }
+    return lineFeedRules;
   }
 
-  public void setOutRtn(Boolean outRtn) {
-    this.outRtn = outRtn;
+  public void setLineFeedRules(LineFeedRules lineFeedRules) {
+    this.lineFeedRules = lineFeedRules;
   }
 
-  public Flywheel getFlywheel() {
-    flywheel.setCreateOutputLineBreaksFlag(getOutRtn());
-    return flywheel;
-  }
- 
   public List<String> getInputList() {
     return inputList;
   }
@@ -97,13 +95,13 @@ public class FlywheelListDriver {
   private String processInput() throws IOException {
     StringWriter sw = new StringWriter();
     for (String s : getInputList()) {
-      flywheel = new FlywheelBuilder().map(createInputMapFrom(s))
-          .input(Stringop.stringToList(getTemplate())).construct();
+      Flywheel flywheel = new FlywheelBuilder().map(createInputMapFrom(s))
+          .input(Stringop.stringToList(getTemplate())).withLineFeedRules(getLineFeedRules()).construct();
       sw.append(flywheel.exec());
       if (flywheel.isStopped()) {
         return String.format("Stopped: %s", flywheel.getControl().getStopReason());
       }
-      if (flywheel.isCreateOutputLineBreaksFlagSet().booleanValue()) {
+      if (flywheel.getTemplate().getTemplateRules().getLineBreaks().booleanValue()) {
         sw.append(Stringop.getEol());
       }
     }
@@ -140,6 +138,10 @@ public class FlywheelListDriver {
     public Builder(List<String> inputList, String template) {
       fp = new FlywheelListDriver(inputList, template);
     }
+    
+    public Builder(String[] inputArray, String template) {
+      fp = new FlywheelListDriver(Arrays.asList(inputArray), template);
+    }
 
     final FlywheelListDriver fp;
 
@@ -150,8 +152,8 @@ public class FlywheelListDriver {
       return fp;
     }
 
-    public Builder withLineBreaks(boolean value) {
-      fp.setOutRtn(value);
+    public Builder withLineFeedRules(LineFeedRules lineFeedRules) {
+      fp.setLineFeedRules(lineFeedRules);
       return this;
     }
     

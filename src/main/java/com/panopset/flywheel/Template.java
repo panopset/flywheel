@@ -14,7 +14,29 @@ public final class Template {
   private final Flywheel fw;
   private final TemplateSource ts;
   private SourceFile sf;
-  private final boolean lineBreaks;
+  private final LineFeedRules templateRules;
+
+  public Template(final Flywheel flywheel, final SourceFile sourceFile, LineFeedRules templateRules) {
+    fw = flywheel;
+    sf = sourceFile;
+    ts = new TemplateFile(sourceFile.getFile());
+    this.templateRules = templateRules;
+  }
+
+  public Template(final Flywheel flywheel, final TemplateSource templateSource, LineFeedRules templateRules) {
+    fw = flywheel;
+    sf = null;
+    ts = templateSource;
+    this.templateRules = templateRules;
+  }
+
+  public Template(final Flywheel flywheel, final TemplateSource templateSource) {
+    this (flywheel, templateSource, flywheel.getLineFeedRules());
+  }
+
+  public LineFeedRules getTemplateRules() {
+    return templateRules;
+  }
 
   private Command firstCommand;
 
@@ -78,7 +100,7 @@ public final class Template {
     return topCommands;
   }
 
-  public void output(final StringWriter stringWriter) {
+  public void output() {
     try {
       for (Command topCommand : getTopCommands()) {
         if (topCommand == null || fw == null || fw.getWriter() == null) {
@@ -107,28 +129,6 @@ public final class Template {
       return "";
     }
     return sf.getRelativePath();
-  }
-
-  public boolean isLineBreaks() {
-    return lineBreaks;
-  }
-
-  public Template(final Flywheel flywheel, final SourceFile sourceFile) {
-    fw = flywheel;
-    sf = sourceFile;
-    ts = new TemplateFile(sourceFile.getFile());
-    lineBreaks = fw.isCreateOutputLineBreaksFlagSet();
-  }
-
-  public Template(final Flywheel flywheel, final TemplateSource templateSource, boolean hasLineBreaks) {
-    fw = flywheel;
-    sf = null;
-    ts = templateSource;
-    lineBreaks = hasLineBreaks;
-  }
-
-  public Template(final Flywheel flywheel, final TemplateSource templateSource) {
-    this (flywheel, templateSource, flywheel.isCreateOutputLineBreaksFlagSet());
   }
 
   public TemplateSource getTemplateSource() {

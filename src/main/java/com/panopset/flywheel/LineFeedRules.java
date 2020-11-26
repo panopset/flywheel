@@ -17,6 +17,10 @@ public class LineFeedRules {
   
   public LineFeedRules() {}
 
+  public LineFeedRules(String lineBreaks, String listBreaks) {
+    this(lineBreaks, listBreaks, "false");
+  }
+
   public LineFeedRules(String lineBreaks, String listBreaks, String winCRLF) {
     this.lineBreaks = Stringop.parseBoolean(lineBreaks);
     this.listBreaks = Stringop.parseBoolean(listBreaks);
@@ -60,5 +64,10 @@ public class LineFeedRules {
 
   public void setWinCRLF(Boolean winCRLF) {
    this.winCRLF = winCRLF;
+  }
+  
+  @Override
+  public String toString() {
+    return String.format("LineB:%s ListB:%s WinCRLF:%s", getLineBreaks(), getListBreaks(), getWinCRLF());
   }
 }

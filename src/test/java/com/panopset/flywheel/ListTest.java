@@ -32,4 +32,14 @@ final class ListTest {
     Assertions.assertEquals("abcabc", result);
     Stringop.setEol(Stringop.DOS_RTN);
   }
+
+  @Test
+  void testSimpleListWithListBreaksSuppressed() throws IOException {
+    Stringop.setEol("\n");
+    FlywheelListDriver fwd = new FlywheelListDriver.Builder(new String[] {"x", "y"}, "ab\nc")
+        .withLineFeedRules(LineFeedRules.LINE_ONLY_BREAKS).build();
+    String result = fwd.getOutput();
+    Assertions.assertEquals("ab\nc\nab\nc\n", result);
+    Stringop.setEol(Stringop.DOS_RTN);
+  }
 }

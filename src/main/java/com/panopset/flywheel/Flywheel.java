@@ -433,11 +433,6 @@ public final class Flywheel implements MapProvider {
   }
 
   public String exec() {
-    if (getTemplate().getTemplateRules().getWinCRLF().booleanValue()) {
-      Stringop.setEol(Stringop.DOS_RTN);
-    } else {
-      Stringop.setEol("\n");
-    }
     getTemplate().output();
     return getWriter().toString();
   }

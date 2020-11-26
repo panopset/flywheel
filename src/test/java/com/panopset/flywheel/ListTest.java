@@ -37,7 +37,7 @@ final class ListTest {
   void testSimpleListWithListBreaksSuppressed() throws IOException {
     Stringop.setEol("\n");
     FlywheelListDriver fwd = new FlywheelListDriver.Builder(new String[] {"x", "y"}, "ab\nc")
-        .withLineFeedRules(LineFeedRules.LINE_ONLY_BREAKS).build();
+        .withLineFeedRules(LineFeedRules.LINE_BREAKS).build();
     String result = fwd.getOutput();
     Assertions.assertEquals("ab\nc\nab\nc\n", result);
     Stringop.setEol(Stringop.DOS_RTN);

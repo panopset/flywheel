@@ -335,7 +335,7 @@ public final class FlywheelBuilder {
    * @param newWriter StringWriter to write output to.
    * @return Builder.
    */
-  public FlywheelBuilder writer(final StringWriter newWriter) {
+  public FlywheelBuilder withWriter(final StringWriter newWriter) {
     writer = newWriter;
     isOutputEnabled = false;
     return this;

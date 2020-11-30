@@ -3,6 +3,7 @@ package com.panopset.flywheel;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.io.IOException;
 import org.junit.jupiter.api.Test;
+import com.panopset.compat.Stringop;
 
 final class SplitColumnListTest {
 
@@ -11,6 +12,7 @@ final class SplitColumnListTest {
    */
   @Test
   void testSplitColumns() throws IOException {
+    Stringop.setEol("\n");
     String expected = "6#Zonk7#Bonk\n";
     String[] inp = new String[] { "${@l splitList.txt}${2}#${3}${@q}" };
     String results = new FlywheelBuilder().withLineFeedRules(LineFeedRules.LINE_BREAKS)

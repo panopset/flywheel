@@ -96,8 +96,8 @@ public class FlywheelListDriver {
     StringWriter sw = new StringWriter();
     for (String s : getInputList()) {
       Flywheel flywheel = new FlywheelBuilder().map(createInputMapFrom(s))
-          .input(Stringop.stringToList(getTemplate())).withLineFeedRules(getLineFeedRules()).construct();
-      sw.append(flywheel.exec());
+          .input(Stringop.stringToList(getTemplate())).withLineFeedRules(getLineFeedRules()).withWriter(sw).construct();
+      flywheel.exec();
       if (flywheel.isStopped()) {
         return String.format("Stopped: %s", flywheel.getControl().getStopReason());
       }

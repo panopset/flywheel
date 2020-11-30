@@ -16,7 +16,7 @@ final class BufferTest {
   @Test
   void testSimpleOneChar() throws IOException {
     StringWriter sw = new StringWriter();
-    Flywheel script = new FlywheelBuilder().writer(sw)
+    Flywheel script = new FlywheelBuilder().withWriter(sw)
         .file(new File(SimpleTest.TEST_FILE_PATH + SIMPLEONECHAR)).construct();
     script.exec();
     assertEquals("x" + Stringop.getEol(), sw.toString());
@@ -25,7 +25,7 @@ final class BufferTest {
   @Test
   void testTwoLines() throws IOException {
     StringWriter sw = new StringWriter();
-    Flywheel script = new FlywheelBuilder().writer(sw)
+    Flywheel script = new FlywheelBuilder().withWriter(sw)
         .file(new File(SimpleTest.TEST_FILE_PATH + SIMPLETWOLINES)).construct();
     script.exec();
     assertEquals("x" + Stringop.getEol() + "y" + Stringop.getEol(), sw.toString());
@@ -35,7 +35,7 @@ final class BufferTest {
   @Test
   void testSimpleBuffer() throws IOException {
     StringWriter sw = new StringWriter();
-    Flywheel script = new FlywheelBuilder().writer(sw)
+    Flywheel script = new FlywheelBuilder().withWriter(sw)
         .file(new File(SimpleTest.TEST_FILE_PATH + SimpleTest.SIMPLETEST)).construct();
     script.exec();
     assertEquals(Fileop.readTextFile(SimpleTest.TEST_FILE_PATH + SimpleTest.EXPECTED),
@@ -45,7 +45,7 @@ final class BufferTest {
   @Test
   void testComplexBuffer() throws IOException {
     StringWriter sw = new StringWriter();
-    Flywheel script = new FlywheelBuilder().writer(sw)
+    Flywheel script = new FlywheelBuilder().withWriter(sw)
         .file(new File(SimpleTest.TEST_FILE_PATH + ComplexTest.TEMPLATE)).construct();
     script.exec();
     assertEquals(Fileop.readTextFile(SimpleTest.TEST_FILE_PATH + ComplexTest.EXPECTED),

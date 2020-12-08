@@ -34,7 +34,7 @@ public enum FlywheelSamples {
     }
     Properties props = new Properties();
     try {
-      props.load(Rezop.getResourceStream(String.format("%s/%s/%s", BASE_PATH, sfx, "props.txt")));
+      props.load(Rezop.getResourceStream(this.getClass(), String.format("%s/%s/%s", BASE_PATH, sfx, "props.txt")));
     } catch (IOException e) {
       Logop.error(e);
       return;
@@ -49,6 +49,6 @@ public enum FlywheelSamples {
     list.add(fs);
   }
   
-  private static final String BASE_PATH = "/com/panopset/flywheel/samples/";
+  private static final String BASE_PATH = "/com/panopset/flywheel/samples";
 
 }

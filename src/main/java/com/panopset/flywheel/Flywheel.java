@@ -260,7 +260,7 @@ public final class Flywheel implements MapProvider {
   public void copyPackageResource(final String resourcePath, final String targetPath)
       throws IOException {
     try {
-      Rezop.copyTextResourceToFile(resourcePath,
+      Rezop.copyTextResourceToFile(this.getClass(), resourcePath,
           Fileop.getCanonicalPath(targetDirectory) + "/" + targetPath);
     } catch (IOException ex) {
       StringWriter sw = new StringWriter();
@@ -354,7 +354,7 @@ public final class Flywheel implements MapProvider {
     Properties props = new Properties();
     if (!file.exists()) {
       try {
-        Rezop.copyTextResourceToFile(relativePath, file);
+        Rezop.copyTextResourceToFile(this.getClass(), relativePath, file);
       } catch (IOException ex) {
         Logop.warn("relativePath: " + relativePath);
         Logop.error(ex);

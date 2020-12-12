@@ -201,7 +201,7 @@ public final class Flywheel implements MapProvider {
   /**
    * Map stack.
    */
-  private final Stack<NamedMap<String, String>> mapStack = new Stack<NamedMap<String, String>>();
+  private final Stack<NamedMap<String, String>> mapStack = new Stack<>();
 
   /**
    * @return Map stack.
@@ -513,7 +513,7 @@ public final class Flywheel implements MapProvider {
    */
   protected List<String[]> getReplacements() {
     if (replacements == null) {
-      replacements = new ArrayList<String[]>();
+      replacements = new ArrayList<>();
     }
     return replacements;
   }

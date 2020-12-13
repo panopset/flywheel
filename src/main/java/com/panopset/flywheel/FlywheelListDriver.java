@@ -36,16 +36,17 @@ public class FlywheelListDriver {
 
   /**
    * Only do this as part of an interative process.
+   * 
    * @param value Value
    */
   public void setInputList(List<String> value) {
     inputList = value;
   }
- 
+
   public String getTemplate() {
     return template;
   }
-  
+
   public boolean hasSplitz() {
     return getSplitz() > 0;
   }
@@ -67,7 +68,7 @@ public class FlywheelListDriver {
     }
     return tokens;
   }
-  
+
   public void setTokens(String value) {
     tokens = value;
   }
@@ -88,7 +89,7 @@ public class FlywheelListDriver {
       }
       return sw.toString();
     } else {
-     return processInput();
+      return processInput();
     }
   }
 
@@ -96,7 +97,8 @@ public class FlywheelListDriver {
     StringWriter sw = new StringWriter();
     for (String s : getInputList()) {
       Flywheel flywheel = new FlywheelBuilder().map(createInputMapFrom(s))
-          .input(Stringop.stringToList(getTemplate())).withLineFeedRules(getLineFeedRules()).withWriter(sw).construct();
+          .input(Stringop.stringToList(getTemplate())).withLineFeedRules(getLineFeedRules())
+          .withWriter(sw).construct();
       flywheel.exec();
       if (flywheel.isStopped()) {
         return String.format("Stopped: %s", flywheel.getControl().getStopReason());
@@ -128,7 +130,7 @@ public class FlywheelListDriver {
     }
     return rtn;
   }
-  
+
   private FlywheelListDriver(List<String> inputList, String template) {
     this.inputList = inputList;
     this.template = template;
@@ -138,7 +140,7 @@ public class FlywheelListDriver {
     public Builder(List<String> inputList, String template) {
       fp = new FlywheelListDriver(inputList, template);
     }
-    
+
     public Builder(String[] inputArray, String template) {
       fp = new FlywheelListDriver(Arrays.asList(inputArray), template);
     }
@@ -156,7 +158,7 @@ public class FlywheelListDriver {
       fp.setLineFeedRules(lineFeedRules);
       return this;
     }
-    
+
     public Builder withSplitz(Integer value) {
       fp.setSplitz(value);
       return this;

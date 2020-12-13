@@ -249,7 +249,7 @@ public final class Flywheel implements MapProvider {
   public void setLineFeedRules(LineFeedRules templateRules) {
     this.lineFeedRules = templateRules;
   }
-  
+
   /**
    * Copy package resource.
    *

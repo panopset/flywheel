@@ -101,8 +101,12 @@ public final class Template {
   }
 
   public void output() {
+    List<Command> topCommands = getTopCommands();
+    if (topCommands == null) {
+      return;
+    }
     try {
-      for (Command topCommand : getTopCommands()) {
+      for (Command topCommand : topCommands) {
         if (topCommand == null || fw == null || fw.getWriter() == null) {
           return;
         }

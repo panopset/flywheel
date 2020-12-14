@@ -26,7 +26,7 @@ public final class ReservedWords {
    */
   public static final String TEMPLATE = "com.panopset.flywheel.template";
   /**
-   * Used to specify the tokens command lines are separated with, if any. Used
+   * Used to specify the tokens list lines are separated with, if any. Used
    * in CommandList.
    */
   public static final String TOKENS = "com.panopset.flywheel.tokens";

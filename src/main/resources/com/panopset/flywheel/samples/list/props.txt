@@ -1,1 +1,3 @@
 desc=List variable
+lineBreaks=false
+listBreaks=false

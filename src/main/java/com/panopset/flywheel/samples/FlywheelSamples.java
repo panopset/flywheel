@@ -46,6 +46,8 @@ public enum FlywheelSamples {
     fs.setDesc(props.getProperty("desc"));
     fs.setLineBreaks(Stringop.parseBoolean(props.getProperty("lineBreaks"), true));
     fs.setListBreaks(Stringop.parseBoolean(props.getProperty("listBreaks"), true));
+    fs.setTokens(props.getProperty("tokens"));
+    fs.setSplitz(props.getProperty("splitz"));
     list.add(fs);
   }
   

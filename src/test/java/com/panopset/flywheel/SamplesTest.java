@@ -12,7 +12,7 @@ class SamplesTest {
     FlywheelSample fs = FlywheelSamples.all().get(0);
     Assertions.assertEquals("List variable", fs.getDesc());
     Assertions.assertEquals("foo\nbar", fs.getListText().replace("\r", ""));
-    Assertions.assertEquals("${w0}", fs.getTemplateText());
+    Assertions.assertEquals("${w0},", fs.getTemplateText());
     Assertions.assertEquals("list", fs.getName());
   }
 }

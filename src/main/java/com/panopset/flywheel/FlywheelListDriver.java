@@ -15,7 +15,7 @@ public class FlywheelListDriver {
 
   private List<String> inputList;
   private final String template;
-  private Integer splitz;
+  private String splitz;
   private String tokens;
   private LineFeedRules lineFeedRules;
 
@@ -48,17 +48,17 @@ public class FlywheelListDriver {
   }
 
   public boolean hasSplitz() {
-    return getSplitz() > 0;
+    return getSplitz().length() > 0;
   }
 
-  public Integer getSplitz() {
+  public String getSplitz() {
     if (splitz == null) {
-      splitz = -1;
+      splitz = "";
     }
     return splitz;
   }
 
-  public void setSplitz(Integer value) {
+  public void setSplitz(String value) {
     splitz = value;
   }
 
@@ -74,7 +74,12 @@ public class FlywheelListDriver {
   }
   
   public synchronized String getOutput() throws IOException {
-    Integer lineSplitWidth = getSplitz();
+    
+    
+    //TODO: account for commas.
+    Integer lineSplitWidth = Stringop.parseInt(getSplitz());
+    
+    
     if (lineSplitWidth != null && lineSplitWidth > 0) {
       StringWriter sw = new StringWriter();
       for (String s : getInputList()) {
@@ -159,7 +164,7 @@ public class FlywheelListDriver {
       return this;
     }
 
-    public Builder withSplitz(Integer value) {
+    public Builder withSplitz(String value) {
       fp.setSplitz(value);
       return this;
     }

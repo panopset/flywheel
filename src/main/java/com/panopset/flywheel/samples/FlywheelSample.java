@@ -1,8 +1,6 @@
 package com.panopset.flywheel.samples;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 public class FlywheelSample implements Serializable {
   private static final long serialVersionUID = 1L;
@@ -11,7 +9,7 @@ public class FlywheelSample implements Serializable {
   private String listText;
   private String templateText;
   private String tokens;
-  private List<String> lineSplitWidths;
+  private String splitz;
   private Boolean lineBreaks;
   private Boolean listBreaks;
 
@@ -70,15 +68,15 @@ public class FlywheelSample implements Serializable {
    this.tokens = tokens;
   }
 
-  public List<String> getLineSplitWidths() {
-   if (lineSplitWidths == null) {
-    lineSplitWidths = new ArrayList<>();
+  public String getSplitz() {
+   if (splitz == null) {
+     splitz = "";
    }
-   return lineSplitWidths;
+   return splitz;
   }
 
-  public void setLineSplitWidths(List<String> lineSplitWidths) {
-   this.lineSplitWidths = lineSplitWidths;
+  public void setSplitz(String splitz) {
+   this.splitz = splitz;
   }
 
   public Boolean getLineBreaks() {

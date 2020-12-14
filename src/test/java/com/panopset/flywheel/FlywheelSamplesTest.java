@@ -14,9 +14,9 @@ class FlywheelSamplesTest {
     Assertions.assertTrue(flywheelSamples.size() > 1);
     FlywheelSample fs0 = flywheelSamples.get(0);
     Assertions.assertEquals("foo\nbar", fs0.getListText().replace("\r", ""));
-    Assertions.assertEquals("${w0}", fs0.getTemplateText());
-    Assertions.assertTrue(fs0.getLineBreaks());
-    Assertions.assertTrue(fs0.getListBreaks());
+    Assertions.assertEquals("${w0},", fs0.getTemplateText());
+    Assertions.assertFalse(fs0.getLineBreaks());
+    Assertions.assertFalse(fs0.getListBreaks());
     FlywheelSample fs1 = flywheelSamples.get(1);
     Assertions.assertTrue(fs1.getLineBreaks());
     Assertions.assertFalse(fs1.getListBreaks());

@@ -1,5 +1,6 @@
 package com.panopset.flywheel;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.io.File;
@@ -8,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import com.panopset.compat.Fileop;
 import com.panopset.gp.FileCompare;
 
-final class SimpleTest {
+class SimpleTest {
 
   /**
    * Temp directory: $HOME/temp/com/panopset/test.
@@ -61,7 +62,7 @@ final class SimpleTest {
    */
   public static void comparisonTest(final String scriptName, final String[] generatedFileNames,
       final String[] expecteds) throws IOException {
-    assertTrue(generatedFileNames.length == expecteds.length);
+    assertEquals(expecteds.length, generatedFileNames.length);
     int incr = 0;
     for (String generatedFileName : generatedFileNames) {
       File generatedFile = new File(TEST_DIRECTORY + "/" + generatedFileName);

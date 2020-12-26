@@ -2,6 +2,7 @@ package com.panopset.flywheel;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -114,7 +115,7 @@ import com.panopset.compat.Stringop;
  * </pre>
  */
 public final class Flywheel implements MapProvider {
-
+  
   private static boolean defined = false;
   
   static synchronized void defineAllowedScriptCalls () {
@@ -156,6 +157,8 @@ public final class Flywheel implements MapProvider {
       flywheel.exec();
     }
   }
+
+  private InputStream inputStream;
 
   /**
    * Target directory.
@@ -602,6 +605,10 @@ public final class Flywheel implements MapProvider {
     if (this.file != null && baseDirectoryPath == null) {
       baseDirectoryPath = Fileop.getParentDirectory(this.file);
     }
+  }
+  
+  void setInputStream(InputStream value) {
+    inputStream = value;
   }
 
   /**

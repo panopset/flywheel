@@ -2,6 +2,7 @@ package com.panopset.flywheel;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,11 +14,13 @@ import com.panopset.compat.Fileop;
 import com.panopset.compat.Logop;
 import com.panopset.compat.Nls;
 import com.panopset.compat.Propop;
+import com.panopset.compat.Rezop;
 import com.panopset.compat.Stringop;
 import com.panopset.gp.TextFileProcessor;
 
 public final class FlywheelBuilder {
 
+  private InputStream inputStream;
   private boolean isOutputEnabled = true;
   private LineFeedRules lineFeedRules;
   private StringWriter writer;
@@ -49,6 +52,7 @@ public final class FlywheelBuilder {
    */
   public Flywheel construct() throws IOException {
     Flywheel flywheel = new Flywheel(getStringLineSupplier());
+    flywheel.setInputStream(inputStream);
     flywheel.setBaseDirectoryPath(getBaseDirectoryPath());
     flywheel.mergeMap(map);
     flywheel.setReplacements(replacements);
@@ -125,6 +129,19 @@ public final class FlywheelBuilder {
     }
     return this.input(sa);
   }
+  
+  public FlywheelBuilder input(Class<?> clazz, String resourcePath) {
+    return input(Rezop.getResourceStream(clazz, resourcePath));
+  }
+  
+  public FlywheelBuilder inputResourcePath(Class<?> clazz, String resourcePath) {
+    return input(Rezop.getResourceStream(clazz, resourcePath));
+  }
+
+  public FlywheelBuilder input(InputStream value) {
+    inputStream = value;
+    return this;
+  }
  
   public FlywheelBuilder withLineFeedRules(LineFeedRules lineFeedRules) {
     this.lineFeedRules = lineFeedRules;
@@ -170,6 +187,10 @@ public final class FlywheelBuilder {
     if (sls == null) {
       if (array != null) {
         sls = new TemplateArray(array);
+        return sls;
+      }
+      if (inputStream != null) {
+        sls = new TemplateInputStream(inputStream);
         return sls;
       }
       sls = new TemplateFile(getScriptFile());

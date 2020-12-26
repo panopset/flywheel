@@ -84,12 +84,7 @@ public final class SourceFile {
    */
   public List<String> getSourceLines() {
     if (sourceLines == null) {
-      try {
-        sourceLines = Fileop.readLines(file);
-      } catch (IOException ex) {
-        Logop.error(ex);
-        return new ArrayList<String>();
-      }
+      sourceLines = Fileop.readLines(file);
     }
     return sourceLines;
   }

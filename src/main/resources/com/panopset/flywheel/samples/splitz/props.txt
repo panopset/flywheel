@@ -1,4 +1,4 @@
 desc=Splitz
 lineBreaks=false
-listBreaks=true
-splitz=3
+listBreaks=false
+splitz=3,2

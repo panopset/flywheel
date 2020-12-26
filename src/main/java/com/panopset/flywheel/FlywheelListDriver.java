@@ -34,11 +34,6 @@ public class FlywheelListDriver {
     return inputList;
   }
 
-  /**
-   * Only do this as part of an interative process.
-   * 
-   * @param value Value
-   */
   public void setInputList(List<String> value) {
     inputList = value;
   }
@@ -74,16 +69,10 @@ public class FlywheelListDriver {
   }
   
   public synchronized String getOutput() throws IOException {
-    
-    
-    //TODO: account for commas.
-    Integer lineSplitWidth = Stringop.parseInt(getSplitz());
-    
-    
-    if (lineSplitWidth != null && lineSplitWidth > 0) {
+    if (hasSplitz()) {
       StringWriter sw = new StringWriter();
       for (String s : getInputList()) {
-        Iterable<String> chunks = Splitter.fixedLength(lineSplitWidth).split(s);
+        Iterable<String> chunks = Splitter.fixedLengths(getSplitz()).split(s);
         List<String> chunky = new ArrayList<>();
         for (String chunk : chunks) {
           chunky.add(chunk);

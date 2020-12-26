@@ -125,7 +125,7 @@ public final class Flywheel implements MapProvider {
     defined = true;
     ReflectionInvoker.defineTemplateAllowedReflection("capitalize", "com.panopset.compat.Stringop.capitalize");
     ReflectionInvoker.defineTemplateAllowedReflection("check4match", "com.panopset.compat.Stringop.check4match");
-    ReflectionInvoker.defineTemplateAllowedReflection("getVersion", "com.panopset.util.AppVersion.getVersion");
+    ReflectionInvoker.defineTemplateAllowedReflection("getVersion", "com.panopset.compat.AppVersion.getVersion");
   }
   
   /**

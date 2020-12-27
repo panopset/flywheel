@@ -9,8 +9,8 @@ and what we want to replace it with.
 
 Note that the push and replace commands must be matched with a quit command.
 
-In this template, we push the variable x with the ${p x} command, g
-ive it a value of "foo", and terminate the x definition with the ${q} command.
+In this template, we push the variable x with the ${p x} command, give it a 
+value of "foo", and terminate the x definition with the ${q} command.
 Then push a replacement of x with the value of bar, with the ${r x} command, 
 similarly terminated with the ${q} command.
 

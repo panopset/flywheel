@@ -1,0 +1,17 @@
+This example demonstrates the push, quit, replace, and line commands.
+
+The replace command is used to replace the contents of any defined variable.  
+We'll name our replacement variable x.
+
+We're going to output each line with the line command, 
+after definining what we want to replace,
+and what we want to replace it with.
+
+Note that the push and replace commands must be matched with a quit command.
+
+In this template, we push the variable x with the ${p x} command, g
+ive it a value of "foo", and terminate the x definition with the ${q} command.
+Then push a replacement of x with the value of bar, with the ${r x} command, 
+similarly terminated with the ${q} command.
+
+Finally, we use the ${l} command to out put each line in this list.

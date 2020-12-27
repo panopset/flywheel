@@ -106,7 +106,7 @@ public abstract class Command {
           } else if (cmd == Commands.EXECUTE.getCharCode()) {
             rtn = new CommandExecute(source, innerPiece, template);
           } else {
-            throw new FlywheelException("Invalid directive: " + cmd);
+            throw new FlywheelException("Undefined command, please see : " + cmd);
           }
         } else {
           rtn = new CommandVariable(source, innerPiece, template);

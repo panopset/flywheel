@@ -456,7 +456,7 @@ public final class Flywheel implements MapProvider {
    * @param message Log this message
    */
   public void stop(final String message) {
-    Logop.warn(message);
+    Logop.error(message);
     if (Logop.isDebugging()) {
       if (getResolvingCommand() != null) {
         Logop.debug(" at: " + getResolvingCommand().toString());

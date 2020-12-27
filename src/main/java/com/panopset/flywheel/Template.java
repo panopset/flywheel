@@ -6,9 +6,8 @@ import com.panopset.compat.Nls;
 import com.panopset.compat.Logop;
 
 /**
- * Once a Flywheel Script file is read, it becomes a template to be processed.
- * Templates may also be processed using the template directive within any
- * template.
+ * Once a Flywheel Script file is read, it becomes a template to be processed. Templates may also be
+ * processed using the template directive within any template.
  */
 public final class Template {
   private final Flywheel fw;
@@ -16,14 +15,16 @@ public final class Template {
   private SourceFile sf;
   private final LineFeedRules templateRules;
 
-  public Template(final Flywheel flywheel, final SourceFile sourceFile, LineFeedRules templateRules) {
+  public Template(final Flywheel flywheel, final SourceFile sourceFile,
+      LineFeedRules templateRules) {
     fw = flywheel;
     sf = sourceFile;
     ts = new TemplateFile(sourceFile.getFile());
     this.templateRules = templateRules;
   }
 
-  public Template(final Flywheel flywheel, final TemplateSource templateSource, LineFeedRules templateRules) {
+  public Template(final Flywheel flywheel, final TemplateSource templateSource,
+      LineFeedRules templateRules) {
     fw = flywheel;
     sf = null;
     ts = templateSource;
@@ -31,7 +32,7 @@ public final class Template {
   }
 
   public Template(final Flywheel flywheel, final TemplateSource templateSource) {
-    this (flywheel, templateSource, flywheel.getLineFeedRules());
+    this(flywheel, templateSource, flywheel.getLineFeedRules());
   }
 
   public LineFeedRules getTemplateRules() {
@@ -89,11 +90,9 @@ public final class Template {
   public List<Command> getTopCommands() {
     if (topCommands == null) {
       try {
-        List<Command> commands = new ImpliedQuitFilter()
-            .addImpliedQuits(getRawCommands());
+        List<Command> commands = new ImpliedQuitFilter().addImpliedQuits(getRawCommands());
         topCommands = CommandMatcher.matchQuitCommands(commands);
       } catch (FlywheelException ex) {
-        Logop.error(ex);
         stop(ex.getMessage());
       }
     }
@@ -119,8 +118,7 @@ public final class Template {
   }
 
   private void stop(final String msg) {
-    Logop.warn(Nls.xlate("Stopped while processing line ") + ts.getLine() + ": "
-        + ts.getName());
+    Logop.error(String.format("Stopped while processing line %d: %s.", ts.getLine(), ts.getName()));
     fw.stop(msg);
   }
 

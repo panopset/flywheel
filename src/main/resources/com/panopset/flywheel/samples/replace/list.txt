@@ -14,4 +14,4 @@ value of "foo", and terminate the x definition with the ${q} command.
 Then push a replacement of x with the value of bar, with the ${r x} command, 
 similarly terminated with the ${q} command.
 
-Finally, we use the ${l} command to out put each line in this list.
+Finally, we use the ${l} command to output each line in this list.

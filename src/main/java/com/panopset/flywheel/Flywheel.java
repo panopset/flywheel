@@ -141,9 +141,7 @@ public final class Flywheel implements MapProvider {
    */
   public static void main(final String... args) throws IOException {
     
-    Logop.turnOnDebugging();
-    
-    
+//  Logop.turnOnDebugging();
     
     if (args == null || args.length == 0 || args.length > 2) {
       Logop.dspmsg("Params are script and target directory.");

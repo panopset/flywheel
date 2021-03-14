@@ -140,6 +140,11 @@ public final class Flywheel implements MapProvider {
    *        </pre>
    */
   public static void main(final String... args) throws IOException {
+    
+    Logop.turnOnDebugging();
+    
+    
+    
     if (args == null || args.length == 0 || args.length > 2) {
       Logop.dspmsg("Params are script and target directory.");
     } else {
@@ -147,12 +152,22 @@ public final class Flywheel implements MapProvider {
       if (args.length == 1) {
         flywheel = new FlywheelBuilder().properties(new File(args[0])).construct();
       } else {
-        String scriptFile = args[0];
-        String targetDirectory = args[1];
-        Logop.debug(String.format(Stringop.CS, "Script file", scriptFile));
-        Logop.debug(String.format(Stringop.CS, "Target directory", targetDirectory));
-        flywheel = new FlywheelBuilder().file(new File(scriptFile))
-            .targetDirectory(new File(targetDirectory)).construct();
+        String scriptFileName = args[0];
+        String targetDirectoryName = args[1];
+        File scriptFile = new File(scriptFileName);
+        File targetDirectory = new File(targetDirectoryName);
+        if (!scriptFile.exists()) {
+          Logop.error("File does not exist.", scriptFile);
+          return;
+        }
+        if (!scriptFile.canRead()) {
+          Logop.error("Can not read.", scriptFile);
+          return;
+        }
+        Logop.info(String.format(Stringop.CS, "Script file", Fileop.getCanonicalPath(scriptFile)));
+        Logop.info(String.format(Stringop.CS, "Target directory", Fileop.getCanonicalPath(targetDirectory)));
+        flywheel = new FlywheelBuilder().file(scriptFile)
+            .targetDirectory(targetDirectory).construct();
       }
       flywheel.exec();
     }

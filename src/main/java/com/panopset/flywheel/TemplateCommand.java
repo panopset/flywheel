@@ -1,5 +1,7 @@
 package com.panopset.flywheel;
 
+import com.panopset.compat.Stringop;
+
 /**
  * A template command is specified in a script, and has a source.
  */

@@ -76,7 +76,7 @@ public final class FlywheelBuilder {
    * @return Builder.
    */
   public FlywheelBuilder targetDirectory(final File newTargetDirectory) {
-    targetDirectory = newTargetDirectory;
+    targetDirectory = newTargetDirectory.getAbsoluteFile();
     return this;
   }
 
@@ -178,7 +178,7 @@ public final class FlywheelBuilder {
 
   private String getBaseDirectoryPath() {
     if (!Stringop.isPopulated(baseDirectoryPath)) {
-      baseDirectoryPath = Fileop.getCanonicalPath(getScriptFile().getParentFile());
+      baseDirectoryPath = Fileop.getCanonicalPath(getScriptFile().getAbsoluteFile().getParentFile());
     }
     return baseDirectoryPath;
   }

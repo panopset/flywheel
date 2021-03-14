@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.StringWriter;
 import com.panopset.compat.Fileop;
+import com.panopset.compat.Stringop;
 
 
 /**
@@ -61,9 +62,15 @@ public final class CommandFile extends MatchableCommand {
       StringWriter newStringWriter = new StringWriter();
       getTemplate().getFlywheel().setWriter(newStringWriter);
       resolveMatchedCommands(newStringWriter);
+      String fileName = getParams();
+      String replacementFileName = getTemplate().getFlywheel().get(fileName);
+      if (Stringop.isPopulated(replacementFileName)) {
+        fileName = replacementFileName;
+      }
+      String outputFilePath =
+          String.format("%s/%s", getTemplate().getFlywheel().getTargetDirectory(), fileName);
       try {
-        Fileop.write(newStringWriter.toString(),
-            new File(getTemplate().getFlywheel().getTargetDirectory() + "/" + getParams()));
+        Fileop.write(newStringWriter.toString(), new File(outputFilePath));
       } catch (IOException e) {
         throw new FlywheelException(sw.toString(), e);
       }

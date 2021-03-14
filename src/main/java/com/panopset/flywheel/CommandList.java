@@ -109,7 +109,10 @@ public class CommandList extends MatchableCommand implements
           .push(
               new NamedMap<>(String.format("key_%d_%s", Stringop.getNextJvmUniqueID(), getParams())));
     for (String s : lines) {
-      Logop.debug("CommandList line:" + s);
+      if (!Stringop.isPopulated(s)) {
+        continue;
+      }
+      Logop.debug(String.format("CommandList line:%s", s));
       if (Stringop.isPopulated(tokens)) {
         StringTokenizer st = new StringTokenizer(s, tokens);
         int incr = 0;
@@ -132,7 +135,7 @@ public class CommandList extends MatchableCommand implements
           }
         }
         if (s.length() > split) {
-          getTemplate().getFlywheel().put("" + count++,
+          getTemplate().getFlywheel().put(String.format("%d", count),
               processValue(s.substring(split)));
         }
       } else {

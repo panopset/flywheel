@@ -1,49 +1,28 @@
 package com.panopset.flywheel;
 
 import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import com.panopset.compat.Fileop;
-import com.panopset.compat.Logop;
 
 /**
  * Flywheel source file, all paths relative to the primary script file.
  */
 public final class SourceFile {
 
-  /**
-   * Relative path.
-   */
   private final String relativePath;
 
-  /**
-   * @return Relative path.
-   */
   String getRelativePath() {
     return relativePath;
   }
 
-  /**
-   * Source file.
-   */
   private final File file;
 
-  /**
-   * @return File.
-   */
   File getFile() {
     return file;
   }
 
-  /**
-   * Canonical path of source file.
-   */
   private final String canonicalPath;
 
-  /**
-   * Source file broken down in to a String List.
-   */
   private List<String> sourceLines;
 
   /**

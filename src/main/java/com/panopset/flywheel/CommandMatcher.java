@@ -26,7 +26,7 @@ final class CommandMatcher {
     for (Command command : commands) {
       updateStack(stack, rtn, command);
       if (command instanceof MatchableCommand) {
-        if (stack.isEmpty() || command instanceof CommandFile) {
+        if (stack.isEmpty()) {
           rtn.add(command);
         }
         stack.push((MatchableCommand) command);
